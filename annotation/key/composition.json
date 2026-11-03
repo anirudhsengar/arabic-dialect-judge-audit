@@ -1,0 +1,157 @@
+{
+  "seed": 20261101,
+  "xlsx_written": false,
+  "n_items": 150,
+  "by_stratum": {
+    "primary": 120,
+    "diagnostic": 30
+  },
+  "per_dialect": {
+    "UAE": {
+      "primary": {
+        "n": 24,
+        "n_domains": 24,
+        "gold_same_as_msa": 11,
+        "gold_differs": 13,
+        "stratum_fallbacks": 1,
+        "gold_is_candidate_1": 10,
+        "meets_option_ref": 0
+      },
+      "diagnostic": {
+        "n": 6,
+        "selected_by": {
+          "low_overlap": 2,
+          "gold_reject": 2,
+          "grammar_fit": 1,
+          "option_ref": 1
+        },
+        "gold_is_candidate_1": 5
+      }
+    },
+    "KSA": {
+      "primary": {
+        "n": 24,
+        "n_domains": 24,
+        "gold_same_as_msa": 12,
+        "gold_differs": 12,
+        "stratum_fallbacks": 0,
+        "gold_is_candidate_1": 11,
+        "meets_option_ref": 3
+      },
+      "diagnostic": {
+        "n": 6,
+        "selected_by": {
+          "low_overlap": 2,
+          "gold_reject": 2,
+          "option_ref": 1,
+          "grammar_fit": 1
+        },
+        "gold_is_candidate_1": 3
+      }
+    },
+    "EGY": {
+      "primary": {
+        "n": 24,
+        "n_domains": 24,
+        "gold_same_as_msa": 12,
+        "gold_differs": 12,
+        "stratum_fallbacks": 0,
+        "gold_is_candidate_1": 10,
+        "meets_option_ref": 0
+      },
+      "diagnostic": {
+        "n": 6,
+        "selected_by": {
+          "gold_reject": 2,
+          "low_overlap": 2,
+          "grammar_fit": 1,
+          "option_ref": 1
+        },
+        "gold_is_candidate_1": 4
+      }
+    },
+    "SYR": {
+      "primary": {
+        "n": 24,
+        "n_domains": 24,
+        "gold_same_as_msa": 12,
+        "gold_differs": 12,
+        "stratum_fallbacks": 0,
+        "gold_is_candidate_1": 17,
+        "meets_option_ref": 2
+      },
+      "diagnostic": {
+        "n": 6,
+        "selected_by": {
+          "low_overlap": 2,
+          "gold_reject": 2,
+          "option_ref": 1,
+          "grammar_fit": 1
+        },
+        "gold_is_candidate_1": 5
+      }
+    },
+    "MAG": {
+      "primary": {
+        "n": 24,
+        "n_domains": 24,
+        "gold_same_as_msa": 12,
+        "gold_differs": 12,
+        "stratum_fallbacks": 0,
+        "gold_is_candidate_1": 11,
+        "meets_option_ref": 1
+      },
+      "diagnostic": {
+        "n": 6,
+        "selected_by": {
+          "low_overlap": 2,
+          "gold_reject": 2,
+          "grammar_fit": 1,
+          "option_ref": 1
+        },
+        "gold_is_candidate_1": 2
+      }
+    }
+  },
+  "diagnostic_pool_sizes_before_excluding_primary": {
+    "UAE": {
+      "gold_reject": 77,
+      "low_overlap": 53,
+      "grammar_fit": 116,
+      "option_ref": 48
+    },
+    "KSA": {
+      "gold_reject": 70,
+      "low_overlap": 52,
+      "grammar_fit": 130,
+      "option_ref": 48
+    },
+    "EGY": {
+      "gold_reject": 74,
+      "low_overlap": 54,
+      "grammar_fit": 75,
+      "option_ref": 48
+    },
+    "SYR": {
+      "gold_reject": 117,
+      "low_overlap": 52,
+      "grammar_fit": 66,
+      "option_ref": 48
+    },
+    "MAG": {
+      "gold_reject": 145,
+      "low_overlap": 52,
+      "grammar_fit": 71,
+      "option_ref": 48
+    }
+  },
+  "low_overlap_quantile": 0.05,
+  "min_judges_reject": 3,
+  "primary_total": {
+    "n": 120,
+    "distinct_keys": 112,
+    "gold_same_as_msa": 59,
+    "distinct_domains": 32
+  },
+  "gold_is_candidate_1_total": 78
+}

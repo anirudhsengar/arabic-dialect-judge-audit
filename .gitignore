@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+results/*.jsonl
+results_mock/
+data/raw/
+data/mmmlu/
+results/analysis/tables/
+results/analysis/figures/*
+!results/analysis/figures/pointwise_gold_dist.pdf

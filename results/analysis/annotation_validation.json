@@ -1,0 +1,2358 @@
+{
+  "description": "Analyse the filled native-speaker annotation sheets (annotation/filled/). Reads stored outputs only; no API calls.\n\nInputs:\n  annotation/filled/annotation_<DIALECT>_<ANNOTATOR>.csv (or .xlsx; needs openpyxl): the sheets from\n      annotation/sheets/ filled by annotators. <ANNOTATOR> is any short code (e.g. A1, A2).\n  annotation/key/answer_key.csv: annotation_id -> key, dialect, stratum, gold candidate (never shown to annotators).\n  annotation/sheets/annotation_<DIALECT>.csv: the blank originals (to check that item columns were not edited).\n  results/<judge>.jsonl via ajd.analyze.load (read-only) and results/analysis/metrics.json (judge list).\n\nRefuses to run (exit != 0) if there is no filled sheet, if a filled sheet has no annotated row, if any row is\nincomplete (unless --allow-partial, which drops incomplete rows but still refuses a sheet with none\ncomplete), on an unknown code, on unknown/duplicated annotation ids, or if an item column was changed.\n\nPre-defined critical failure (per annotator x cell):\n    question_fidelity == 0  OR  gold candidate status != definitely_correct\n                            OR  distractor candidate status != definitely_incorrect.\nA cell is VERIFIED iff every annotator who rated it reports no critical failure (conservative rule for\ntwo annotators). Validity rate = share of PRIMARY cells without critical failure; Wilson 95% CI. Reported\nper dialect, per annotator and at the cell level, with the component rates. The diagnostic stratum is\nreported descriptively (by selection criterion) and never enters the validity rates or the gap.\n\nInter-annotator agreement (cells rated by >= 2 annotators; first two annotators per dialect in sorted\nfile-name order): raw agreement and Cohen's kappa for nominal fields (incl. the critical-failure flag and\nthe gold/distractor statuses), quadratic-weighted kappa for ordinal fields (fidelity, naturalness, confidence).\n\nPointwise gold-acceptance gap on verified cells (all 8 judges): per judge, acceptance of the gold (and of the\ndistractor) over VALID pointwise outputs, dialect - MSA, paired on the same key: d_k = mean over the\nkey's selected (key, dialect) cells of (acc_dialect - acc_MSA), then mean over keys (ajd.competence.paired_mean_over).\nCell sets: verified primary cells; all primary cells (same cells, no filter); failed primary cells; and\nverified cells per dialect. 95% CIs: domain-stratified key bootstrap (ajd.stats.stratified_weights over the\n1,024 sample keys, B=2000, seed 2026; keys without a selected cell are dropped).\n\nOutput: results/analysis/annotation_validation.json and a printed summary.\nUsage: cd experiment && uv run --project .. python scripts/annotation_analysis.py [--allow-partial] [--filled-dir DIR]\n",
+  "files": {
+    "annotation_EGY_A1.csv": {
+      "dialect": "EGY",
+      "annotator": "A1",
+      "n_rows": 30,
+      "n_complete": 30,
+      "n_dropped_incomplete": 0,
+      "n_missing_ids": 0
+    },
+    "annotation_KSA_A1.csv": {
+      "dialect": "KSA",
+      "annotator": "A1",
+      "n_rows": 30,
+      "n_complete": 30,
+      "n_dropped_incomplete": 0,
+      "n_missing_ids": 0
+    },
+    "annotation_SYR_A1.csv": {
+      "dialect": "SYR",
+      "annotator": "A1",
+      "n_rows": 30,
+      "n_complete": 30,
+      "n_dropped_incomplete": 0,
+      "n_missing_ids": 0
+    },
+    "annotation_UAE_A1.csv": {
+      "dialect": "UAE",
+      "annotator": "A1",
+      "n_rows": 30,
+      "n_complete": 30,
+      "n_dropped_incomplete": 0,
+      "n_missing_ids": 0
+    }
+  },
+  "composition": {
+    "package": {
+      "seed": 20261101,
+      "xlsx_written": false,
+      "n_items": 150,
+      "by_stratum": {
+        "primary": 120,
+        "diagnostic": 30
+      },
+      "per_dialect": {
+        "UAE": {
+          "primary": {
+            "n": 24,
+            "n_domains": 24,
+            "gold_same_as_msa": 11,
+            "gold_differs": 13,
+            "stratum_fallbacks": 1,
+            "gold_is_candidate_1": 10,
+            "meets_option_ref": 0
+          },
+          "diagnostic": {
+            "n": 6,
+            "selected_by": {
+              "low_overlap": 2,
+              "gold_reject": 2,
+              "grammar_fit": 1,
+              "option_ref": 1
+            },
+            "gold_is_candidate_1": 5
+          }
+        },
+        "KSA": {
+          "primary": {
+            "n": 24,
+            "n_domains": 24,
+            "gold_same_as_msa": 12,
+            "gold_differs": 12,
+            "stratum_fallbacks": 0,
+            "gold_is_candidate_1": 11,
+            "meets_option_ref": 3
+          },
+          "diagnostic": {
+            "n": 6,
+            "selected_by": {
+              "low_overlap": 2,
+              "gold_reject": 2,
+              "option_ref": 1,
+              "grammar_fit": 1
+            },
+            "gold_is_candidate_1": 3
+          }
+        },
+        "EGY": {
+          "primary": {
+            "n": 24,
+            "n_domains": 24,
+            "gold_same_as_msa": 12,
+            "gold_differs": 12,
+            "stratum_fallbacks": 0,
+            "gold_is_candidate_1": 10,
+            "meets_option_ref": 0
+          },
+          "diagnostic": {
+            "n": 6,
+            "selected_by": {
+              "gold_reject": 2,
+              "low_overlap": 2,
+              "grammar_fit": 1,
+              "option_ref": 1
+            },
+            "gold_is_candidate_1": 4
+          }
+        },
+        "SYR": {
+          "primary": {
+            "n": 24,
+            "n_domains": 24,
+            "gold_same_as_msa": 12,
+            "gold_differs": 12,
+            "stratum_fallbacks": 0,
+            "gold_is_candidate_1": 17,
+            "meets_option_ref": 2
+          },
+          "diagnostic": {
+            "n": 6,
+            "selected_by": {
+              "low_overlap": 2,
+              "gold_reject": 2,
+              "option_ref": 1,
+              "grammar_fit": 1
+            },
+            "gold_is_candidate_1": 5
+          }
+        },
+        "MAG": {
+          "primary": {
+            "n": 24,
+            "n_domains": 24,
+            "gold_same_as_msa": 12,
+            "gold_differs": 12,
+            "stratum_fallbacks": 0,
+            "gold_is_candidate_1": 11,
+            "meets_option_ref": 1
+          },
+          "diagnostic": {
+            "n": 6,
+            "selected_by": {
+              "low_overlap": 2,
+              "gold_reject": 2,
+              "grammar_fit": 1,
+              "option_ref": 1
+            },
+            "gold_is_candidate_1": 2
+          }
+        }
+      },
+      "diagnostic_pool_sizes_before_excluding_primary": {
+        "UAE": {
+          "gold_reject": 77,
+          "low_overlap": 53,
+          "grammar_fit": 116,
+          "option_ref": 48
+        },
+        "KSA": {
+          "gold_reject": 70,
+          "low_overlap": 52,
+          "grammar_fit": 130,
+          "option_ref": 48
+        },
+        "EGY": {
+          "gold_reject": 74,
+          "low_overlap": 54,
+          "grammar_fit": 75,
+          "option_ref": 48
+        },
+        "SYR": {
+          "gold_reject": 117,
+          "low_overlap": 52,
+          "grammar_fit": 66,
+          "option_ref": 48
+        },
+        "MAG": {
+          "gold_reject": 145,
+          "low_overlap": 52,
+          "grammar_fit": 71,
+          "option_ref": 48
+        }
+      },
+      "low_overlap_quantile": 0.05,
+      "min_judges_reject": 3,
+      "primary_total": {
+        "n": 120,
+        "distinct_keys": 112,
+        "gold_same_as_msa": 59,
+        "distinct_domains": 32
+      },
+      "gold_is_candidate_1_total": 78
+    },
+    "rated": [
+      {
+        "dialect": "EGY",
+        "stratum": "diagnostic",
+        "n_ratings": 6,
+        "n_items": 6,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "EGY",
+        "stratum": "primary",
+        "n_ratings": 24,
+        "n_items": 24,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "KSA",
+        "stratum": "diagnostic",
+        "n_ratings": 6,
+        "n_items": 6,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "KSA",
+        "stratum": "primary",
+        "n_ratings": 24,
+        "n_items": 24,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "SYR",
+        "stratum": "diagnostic",
+        "n_ratings": 6,
+        "n_items": 6,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "SYR",
+        "stratum": "primary",
+        "n_ratings": 24,
+        "n_items": 24,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "UAE",
+        "stratum": "diagnostic",
+        "n_ratings": 6,
+        "n_items": 6,
+        "n_annotators": 1
+      },
+      {
+        "dialect": "UAE",
+        "stratum": "primary",
+        "n_ratings": 24,
+        "n_items": 24,
+        "n_annotators": 1
+      }
+    ]
+  },
+  "validity_primary": {
+    "per_dialect": {
+      "UAE": {
+        "cell_level_verified": {
+          "rate": 0.4583333333333333,
+          "ci95": [
+            0.2789133373121099,
+            0.6492513464108051
+          ],
+          "k": 11,
+          "n": 24
+        },
+        "cells_rated_by_2plus": 0,
+        "cells_disagreeing_on_failure": 0,
+        "per_annotator": {
+          "A1": {
+            "valid": {
+              "rate": 0.4583333333333333,
+              "ci95": [
+                0.2789133373121099,
+                0.6492513464108051
+              ],
+              "k": 11,
+              "n": 24
+            },
+            "fidelity_0": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "gold_not_definitely_correct": {
+              "rate": 0.375,
+              "ci95": [
+                0.21159367559548778,
+                0.5729003755732572
+              ],
+              "k": 9,
+              "n": 24
+            },
+            "distractor_not_definitely_incorrect": {
+              "rate": 0.5,
+              "ci95": [
+                0.3142742581957335,
+                0.6857257418042665
+              ],
+              "k": 12,
+              "n": 24
+            },
+            "gold_status_counts": {
+              "definitely_correct": 15,
+              "definitely_incorrect": 9
+            },
+            "dist_status_counts": {
+              "definitely_correct": 12,
+              "definitely_incorrect": 12
+            },
+            "naturalness_mean": 4.0,
+            "authenticity_counts": {
+              "yes": 17,
+              "mixed": 7
+            },
+            "gold_grammatical_fit_no": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "option_reference_problem_yes": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "confidence_mean": 3.75,
+            "native_dialects_reported": [
+              "Emirati dubai"
+            ]
+          }
+        }
+      },
+      "KSA": {
+        "cell_level_verified": {
+          "rate": 0.3333333333333333,
+          "ci95": [
+            0.1797219032729775,
+            0.5329368316186824
+          ],
+          "k": 8,
+          "n": 24
+        },
+        "cells_rated_by_2plus": 0,
+        "cells_disagreeing_on_failure": 0,
+        "per_annotator": {
+          "A1": {
+            "valid": {
+              "rate": 0.3333333333333333,
+              "ci95": [
+                0.1797219032729775,
+                0.5329368316186824
+              ],
+              "k": 8,
+              "n": 24
+            },
+            "fidelity_0": {
+              "rate": 0.08333333333333333,
+              "ci95": [
+                0.023158815297043306,
+                0.25848802193210685
+              ],
+              "k": 2,
+              "n": 24
+            },
+            "gold_not_definitely_correct": {
+              "rate": 0.5833333333333334,
+              "ci95": [
+                0.3883466586522876,
+                0.7553239739018824
+              ],
+              "k": 14,
+              "n": 24
+            },
+            "distractor_not_definitely_incorrect": {
+              "rate": 0.5,
+              "ci95": [
+                0.3142742581957335,
+                0.6857257418042665
+              ],
+              "k": 12,
+              "n": 24
+            },
+            "gold_status_counts": {
+              "definitely_incorrect": 13,
+              "definitely_correct": 10,
+              "cannot_determine": 1
+            },
+            "dist_status_counts": {
+              "definitely_incorrect": 12,
+              "definitely_correct": 11,
+              "cannot_determine": 1
+            },
+            "naturalness_mean": 4.666666666666667,
+            "authenticity_counts": {
+              "yes": 24
+            },
+            "gold_grammatical_fit_no": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "option_reference_problem_yes": {
+              "rate": 0.16666666666666666,
+              "ci95": [
+                0.06678676328632951,
+                0.3585307064969906
+              ],
+              "k": 4,
+              "n": 24
+            },
+            "confidence_mean": 4.5,
+            "native_dialects_reported": [
+              "Saudi"
+            ]
+          }
+        }
+      },
+      "EGY": {
+        "cell_level_verified": {
+          "rate": 0.3333333333333333,
+          "ci95": [
+            0.1797219032729775,
+            0.5329368316186824
+          ],
+          "k": 8,
+          "n": 24
+        },
+        "cells_rated_by_2plus": 0,
+        "cells_disagreeing_on_failure": 0,
+        "per_annotator": {
+          "A1": {
+            "valid": {
+              "rate": 0.3333333333333333,
+              "ci95": [
+                0.1797219032729775,
+                0.5329368316186824
+              ],
+              "k": 8,
+              "n": 24
+            },
+            "fidelity_0": {
+              "rate": 0.16666666666666666,
+              "ci95": [
+                0.06678676328632951,
+                0.3585307064969906
+              ],
+              "k": 4,
+              "n": 24
+            },
+            "gold_not_definitely_correct": {
+              "rate": 0.5416666666666666,
+              "ci95": [
+                0.3507486535891948,
+                0.72108666268789
+              ],
+              "k": 13,
+              "n": 24
+            },
+            "distractor_not_definitely_incorrect": {
+              "rate": 0.625,
+              "ci95": [
+                0.42709962442674276,
+                0.7884063244045122
+              ],
+              "k": 15,
+              "n": 24
+            },
+            "gold_status_counts": {
+              "definitely_correct": 11,
+              "definitely_incorrect": 5,
+              "ambiguous": 4,
+              "cannot_determine": 4
+            },
+            "dist_status_counts": {
+              "definitely_incorrect": 9,
+              "ambiguous": 6,
+              "cannot_determine": 5,
+              "definitely_correct": 4
+            },
+            "naturalness_mean": 4.416666666666667,
+            "authenticity_counts": {
+              "yes": 19,
+              "mixed": 4,
+              "no": 1
+            },
+            "gold_grammatical_fit_no": {
+              "rate": 0.0,
+              "ci95": [
+                1.3877787807814457e-17,
+                0.13797620467498017
+              ],
+              "k": 0,
+              "n": 24
+            },
+            "option_reference_problem_yes": {
+              "rate": 0.08333333333333333,
+              "ci95": [
+                0.023158815297043306,
+                0.25848802193210685
+              ],
+              "k": 2,
+              "n": 24
+            },
+            "confidence_mean": 5.0,
+            "native_dialects_reported": [
+              "Yes"
+            ]
+          }
+        }
+      },
+      "SYR": {
+        "cell_level_verified": {
+          "rate": 0.5416666666666666,
+          "ci95": [
+            0.3507486535891948,
+            0.72108666268789
+          ],
+          "k": 13,
+          "n": 24
+        },
+        "cells_rated_by_2plus": 0,
+        "cells_disagreeing_on_failure": 0,
+        "per_annotator": {
+          "A1": {
+            "valid": {
+              "rate": 0.5416666666666666,
+              "ci95": [
+                0.3507486535891948,
+                0.72108666268789
+              ],
+              "k": 13,
+              "n": 24
+            },
+            "fidelity_0": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "gold_not_definitely_correct": {
+              "rate": 0.3333333333333333,
+              "ci95": [
+                0.1797219032729775,
+                0.5329368316186824
+              ],
+              "k": 8,
+              "n": 24
+            },
+            "distractor_not_definitely_incorrect": {
+              "rate": 0.4166666666666667,
+              "ci95": [
+                0.24467602609811764,
+                0.6116533413477124
+              ],
+              "k": 10,
+              "n": 24
+            },
+            "gold_status_counts": {
+              "definitely_correct": 16,
+              "definitely_incorrect": 5,
+              "cannot_determine": 2,
+              "ambiguous": 1
+            },
+            "dist_status_counts": {
+              "definitely_incorrect": 14,
+              "definitely_correct": 7,
+              "cannot_determine": 3
+            },
+            "naturalness_mean": 4.791666666666667,
+            "authenticity_counts": {
+              "yes": 23,
+              "mixed": 1
+            },
+            "gold_grammatical_fit_no": {
+              "rate": 0.125,
+              "ci95": [
+                0.04344334080123444,
+                0.31003881270500067
+              ],
+              "k": 3,
+              "n": 24
+            },
+            "option_reference_problem_yes": {
+              "rate": 0.041666666666666664,
+              "ci95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "k": 1,
+              "n": 24
+            },
+            "confidence_mean": 4.791666666666667,
+            "native_dialects_reported": [
+              "Syrian"
+            ]
+          }
+        }
+      }
+    },
+    "pooled": {
+      "ALL": {
+        "cell_level_verified": {
+          "rate": 0.4166666666666667,
+          "ci95": [
+            0.32311561071330697,
+            0.5166303205963058
+          ],
+          "k": 40,
+          "n": 96
+        },
+        "cells_rated_by_2plus": 0,
+        "cells_disagreeing_on_failure": 0,
+        "per_annotator": {
+          "A1": {
+            "valid": {
+              "rate": 0.4166666666666667,
+              "ci95": [
+                0.32311561071330697,
+                0.5166303205963058
+              ],
+              "k": 40,
+              "n": 96
+            },
+            "fidelity_0": {
+              "rate": 0.08333333333333333,
+              "ci95": [
+                0.04283062415096722,
+                0.15589903239709585
+              ],
+              "k": 8,
+              "n": 96
+            },
+            "gold_not_definitely_correct": {
+              "rate": 0.4583333333333333,
+              "ci95": [
+                0.36218849483208426,
+                0.5576844708227221
+              ],
+              "k": 44,
+              "n": 96
+            },
+            "distractor_not_definitely_incorrect": {
+              "rate": 0.5104166666666666,
+              "ci95": [
+                0.41196037089885484,
+                0.6080713876874437
+              ],
+              "k": 49,
+              "n": 96
+            },
+            "gold_status_counts": {
+              "definitely_correct": 52,
+              "definitely_incorrect": 32,
+              "cannot_determine": 7,
+              "ambiguous": 5
+            },
+            "dist_status_counts": {
+              "definitely_incorrect": 47,
+              "definitely_correct": 34,
+              "cannot_determine": 9,
+              "ambiguous": 6
+            },
+            "naturalness_mean": 4.46875,
+            "authenticity_counts": {
+              "yes": 83,
+              "mixed": 12,
+              "no": 1
+            },
+            "gold_grammatical_fit_no": {
+              "rate": 0.052083333333333336,
+              "ci95": [
+                0.02244960047424143,
+                0.11618478031492638
+              ],
+              "k": 5,
+              "n": 96
+            },
+            "option_reference_problem_yes": {
+              "rate": 0.08333333333333333,
+              "ci95": [
+                0.04283062415096722,
+                0.15589903239709585
+              ],
+              "k": 8,
+              "n": 96
+            },
+            "confidence_mean": 4.510416666666667,
+            "native_dialects_reported": [
+              "Emirati dubai",
+              "Saudi",
+              "Syrian",
+              "Yes"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "diagnostic": {
+    "gold_reject": {
+      "n_ratings": 8,
+      "critical_failure": {
+        "rate": 0.25,
+        "ci95": [
+          0.071479212752109,
+          0.5907245696898311
+        ],
+        "k": 2,
+        "n": 8
+      },
+      "gold_not_definitely_correct": {
+        "rate": 0.25,
+        "ci95": [
+          0.071479212752109,
+          0.5907245696898311
+        ],
+        "k": 2,
+        "n": 8
+      },
+      "gold_grammatical_fit_no": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.32440756488388023
+        ],
+        "k": 0,
+        "n": 8
+      },
+      "option_reference_problem_yes": {
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.32440756488388023
+        ],
+        "k": 0,
+        "n": 8
+      }
+    },
+    "grammar_fit": {
+      "n_ratings": 4,
+      "critical_failure": {
+        "rate": 0.75,
+        "ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "k": 3,
+        "n": 4
+      },
+      "gold_not_definitely_correct": {
+        "rate": 0.5,
+        "ci95": [
+          0.15003898915214947,
+          0.8499610108478506
+        ],
+        "k": 2,
+        "n": 4
+      },
+      "gold_grammatical_fit_no": {
+        "rate": 0.25,
+        "ci95": [
+          0.04558726080970055,
+          0.6993581574175981
+        ],
+        "k": 1,
+        "n": 4
+      },
+      "option_reference_problem_yes": {
+        "rate": 0.25,
+        "ci95": [
+          0.04558726080970055,
+          0.6993581574175981
+        ],
+        "k": 1,
+        "n": 4
+      }
+    },
+    "low_overlap": {
+      "n_ratings": 8,
+      "critical_failure": {
+        "rate": 0.875,
+        "ci95": [
+          0.5291118177871464,
+          0.9775825085499433
+        ],
+        "k": 7,
+        "n": 8
+      },
+      "gold_not_definitely_correct": {
+        "rate": 0.25,
+        "ci95": [
+          0.071479212752109,
+          0.5907245696898311
+        ],
+        "k": 2,
+        "n": 8
+      },
+      "gold_grammatical_fit_no": {
+        "rate": 0.125,
+        "ci95": [
+          0.02241749145005667,
+          0.4708881822128535
+        ],
+        "k": 1,
+        "n": 8
+      },
+      "option_reference_problem_yes": {
+        "rate": 0.125,
+        "ci95": [
+          0.02241749145005667,
+          0.4708881822128535
+        ],
+        "k": 1,
+        "n": 8
+      }
+    },
+    "option_ref": {
+      "n_ratings": 4,
+      "critical_failure": {
+        "rate": 0.75,
+        "ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "k": 3,
+        "n": 4
+      },
+      "gold_not_definitely_correct": {
+        "rate": 0.75,
+        "ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "k": 3,
+        "n": 4
+      },
+      "gold_grammatical_fit_no": {
+        "rate": 0.25,
+        "ci95": [
+          0.04558726080970055,
+          0.6993581574175981
+        ],
+        "k": 1,
+        "n": 4
+      },
+      "option_reference_problem_yes": {
+        "rate": 0.5,
+        "ci95": [
+          0.15003898915214947,
+          0.8499610108478506
+        ],
+        "k": 2,
+        "n": 4
+      }
+    }
+  },
+  "agreement": {},
+  "pointwise_gap": {
+    "n_cells": {
+      "verified_primary": 40,
+      "all_primary": 96,
+      "failed_primary": 56,
+      "verified_primary_UAE": 11,
+      "verified_primary_KSA": 8,
+      "verified_primary_EGY": 8,
+      "verified_primary_SYR": 13,
+      "verified_primary_MAG": 0
+    },
+    "n_keys": {
+      "verified_primary": 38,
+      "all_primary": 91,
+      "failed_primary": 54,
+      "verified_primary_UAE": 11,
+      "verified_primary_KSA": 8,
+      "verified_primary_EGY": 8,
+      "verified_primary_SYR": 13,
+      "verified_primary_MAG": 0
+    },
+    "judges": {
+      "gpt-6.1-sol": {
+        "verified_primary": {
+          "gold": {
+            "est": -0.02631578947368421,
+            "ci95": [
+              -0.08574534161490681,
+              0.0
+            ],
+            "acc_a": 0.8421052631578947,
+            "acc_b": 0.868421052631579,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": -0.02631578947368421,
+            "ci95": [
+              -0.1220274390243901,
+              0.06060606060606061
+            ],
+            "acc_a": 0.10526315789473684,
+            "acc_b": 0.13157894736842105,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.02197802197802198,
+            "ci95": [
+              -0.05480080432323739,
+              0.0
+            ],
+            "acc_a": 0.8351648351648352,
+            "acc_b": 0.8571428571428571,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": -0.04395604395604396,
+            "ci95": [
+              -0.11235955056179775,
+              0.023529411764705882
+            ],
+            "acc_a": 0.14285714285714285,
+            "acc_b": 0.18681318681318682,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.018518518518518517,
+            "ci95": [
+              -0.061224489795918324,
+              0.0
+            ],
+            "acc_a": 0.8148148148148148,
+            "acc_b": 0.8333333333333334,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": -0.05555555555555555,
+            "ci95": [
+              -0.15097415914684162,
+              0.0392156862745098
+            ],
+            "acc_a": 0.16666666666666666,
+            "acc_b": 0.2222222222222222,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": -0.09090909090909091,
+            "ci95": [
+              -0.30000000000000004,
+              0.0
+            ],
+            "acc_a": 0.7272727272727273,
+            "acc_b": 0.8181818181818182,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.09090909090909091,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.875,
+            "acc_b": 0.875,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": -0.125,
+            "ci95": [
+              -0.41755952380952327,
+              0.0
+            ],
+            "acc_a": 0.0,
+            "acc_b": 0.125,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 1.0,
+            "acc_b": 1.0,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              -0.39999999999999997,
+              0.334090909090905
+            ],
+            "acc_a": 0.25,
+            "acc_b": 0.25,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.8461538461538461,
+            "acc_b": 0.8461538461538461,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.07692307692307693,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "gpt-6-luna": {
+        "verified_primary": {
+          "gold": {
+            "est": 0.02631578947368421,
+            "ci95": [
+              -0.09523809523809523,
+              0.14285714285714285
+            ],
+            "acc_a": 0.5789473684210527,
+            "acc_b": 0.5526315789473685,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": -0.02631578947368421,
+            "ci95": [
+              -0.14705882352941177,
+              0.08698849104859319
+            ],
+            "acc_a": 0.10526315789473684,
+            "acc_b": 0.13157894736842105,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.01098901098901099,
+            "ci95": [
+              -0.09260335917312656,
+              0.06395348837209303
+            ],
+            "acc_a": 0.5164835164835165,
+            "acc_b": 0.5274725274725275,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": -0.01098901098901099,
+            "ci95": [
+              -0.08510638297872339,
+              0.059535714285714234
+            ],
+            "acc_a": 0.10989010989010989,
+            "acc_b": 0.12087912087912088,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.046296296296296294,
+            "ci95": [
+              -0.16074054621848738,
+              0.05555555555555558
+            ],
+            "acc_a": 0.4722222222222222,
+            "acc_b": 0.5185185185185185,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": -0.018518518518518517,
+            "ci95": [
+              -0.11116352201257854,
+              0.07146103896103881
+            ],
+            "acc_a": 0.1111111111111111,
+            "acc_b": 0.12962962962962962,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.6363636363636364,
+            "acc_b": 0.6363636363636364,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": -0.09090909090909091,
+            "ci95": [
+              -0.3,
+              0.0
+            ],
+            "acc_a": 0.09090909090909091,
+            "acc_b": 0.18181818181818182,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.125,
+            "ci95": [
+              0.0,
+              0.39999999999999997
+            ],
+            "acc_a": 0.375,
+            "acc_b": 0.25,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": -0.125,
+            "ci95": [
+              -0.6,
+              0.3333333333333333
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.25,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.5,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.125,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.33333333333333326,
+              0.33333333333333326
+            ],
+            "acc_a": 0.7692307692307693,
+            "acc_b": 0.7692307692307693,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.07692307692307693,
+            "ci95": [
+              0.0,
+              0.25032894736841926
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.0,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "opus-5.5": {
+        "verified_primary": {
+          "gold": {
+            "est": -0.05714285714285714,
+            "ci95": [
+              -0.16666666666666663,
+              0.05128205128205121
+            ],
+            "acc_a": 0.7142857142857143,
+            "acc_b": 0.7714285714285715,
+            "n_keys": 35
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.027777777777777776,
+            "acc_b": 0.027777777777777776,
+            "n_keys": 36
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.022988505747126436,
+            "ci95": [
+              -0.08602150537634412,
+              0.03752403846153831
+            ],
+            "acc_a": 0.7586206896551724,
+            "acc_b": 0.7816091954022989,
+            "n_keys": 87
+          },
+          "dist": {
+            "est": -0.011363636363636364,
+            "ci95": [
+              -0.03738609813084111,
+              0.0
+            ],
+            "acc_a": 0.056818181818181816,
+            "acc_b": 0.06818181818181818,
+            "n_keys": 88
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.07354302832244003,
+              0.07501179245283009
+            ],
+            "acc_a": 0.7735849056603774,
+            "acc_b": 0.7735849056603774,
+            "n_keys": 53
+          },
+          "dist": {
+            "est": -0.018867924528301886,
+            "ci95": [
+              -0.0625,
+              0.0
+            ],
+            "acc_a": 0.07547169811320754,
+            "acc_b": 0.09433962264150944,
+            "n_keys": 53
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.7,
+            "acc_b": 0.7,
+            "n_keys": 10
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.1,
+            "acc_b": 0.1,
+            "n_keys": 10
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": -0.14285714285714285,
+            "ci95": [
+              -0.5,
+              0.0
+            ],
+            "acc_a": 0.7142857142857143,
+            "acc_b": 0.8571428571428571,
+            "n_keys": 7
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.0,
+            "acc_b": 0.0,
+            "n_keys": 7
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": -0.2857142857142857,
+            "ci95": [
+              -0.6666666666666667,
+              0.0
+            ],
+            "acc_a": 0.5714285714285714,
+            "acc_b": 0.8571428571428571,
+            "n_keys": 7
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.0,
+            "acc_b": 0.0,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.2003571428571423,
+              0.22243589743589626
+            ],
+            "acc_a": 0.7692307692307693,
+            "acc_b": 0.7692307692307693,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.0,
+            "acc_b": 0.0,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "haiku-5.5": {
+        "verified_primary": {
+          "gold": {
+            "est": -0.02631578947368421,
+            "ci95": [
+              -0.11764705882352944,
+              0.058868092691621875
+            ],
+            "acc_a": 0.6052631578947368,
+            "acc_b": 0.631578947368421,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": 0.02631578947368421,
+            "ci95": [
+              0.0,
+              0.08698849104859319
+            ],
+            "acc_a": 0.21052631578947367,
+            "acc_b": 0.18421052631578946,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.08241758241758242,
+            "ci95": [
+              -0.16860465116279066,
+              0.0
+            ],
+            "acc_a": 0.532967032967033,
+            "acc_b": 0.6153846153846154,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": 0.005494505494505495,
+            "ci95": [
+              -0.061815308988764,
+              0.07144841269841261
+            ],
+            "acc_a": 0.24725274725274726,
+            "acc_b": 0.24175824175824176,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.12962962962962962,
+            "ci95": [
+              -0.2653061224489796,
+              0.0
+            ],
+            "acc_a": 0.48148148148148145,
+            "acc_b": 0.6111111111111112,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": 0.009259259259259259,
+            "ci95": [
+              -0.10528309409888353,
+              0.1227004716981129
+            ],
+            "acc_a": 0.28703703703703703,
+            "acc_b": 0.2777777777777778,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.2503289473684205,
+              0.2857142857142857
+            ],
+            "acc_a": 0.6363636363636364,
+            "acc_b": 0.6363636363636364,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.09090909090909091,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.5,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.125,
+            "ci95": [
+              0.0,
+              0.4285714285714286
+            ],
+            "acc_a": 0.375,
+            "acc_b": 0.25,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.5,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.375,
+            "acc_b": 0.375,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": -0.07692307692307693,
+            "ci95": [
+              -0.25,
+              0.0
+            ],
+            "acc_a": 0.6923076923076923,
+            "acc_b": 0.7692307692307693,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.07692307692307693,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "gemini-4-argon": {
+        "verified_primary": {
+          "gold": {
+            "est": 0.05263157894736842,
+            "ci95": [
+              -0.05266714082503555,
+              0.1539062499999997
+            ],
+            "acc_a": 0.868421052631579,
+            "acc_b": 0.8157894736842105,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": 0.05263157894736842,
+            "ci95": [
+              0.0,
+              0.12903225806451613
+            ],
+            "acc_a": 0.13157894736842105,
+            "acc_b": 0.07894736842105263,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.04951732673267318,
+              0.05064259881167645
+            ],
+            "acc_a": 0.8461538461538461,
+            "acc_b": 0.8461538461538461,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": 0.01098901098901099,
+            "ci95": [
+              -0.04597701149425287,
+              0.06731039325842694
+            ],
+            "acc_a": 0.15384615384615385,
+            "acc_b": 0.14285714285714285,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.037037037037037035,
+            "ci95": [
+              -0.09259259259259256,
+              0.0
+            ],
+            "acc_a": 0.8148148148148148,
+            "acc_b": 0.8518518518518519,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": -0.018518518518518517,
+            "ci95": [
+              -0.10207600281491902,
+              0.061256377551020244
+            ],
+            "acc_a": 0.16666666666666666,
+            "acc_b": 0.18518518518518517,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.09090909090909091,
+            "ci95": [
+              0.0,
+              0.3076923076923077
+            ],
+            "acc_a": 0.9090909090909091,
+            "acc_b": 0.8181818181818182,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.09090909090909091,
+            "ci95": [
+              0.0,
+              0.3
+            ],
+            "acc_a": 0.18181818181818182,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.25,
+            "ci95": [
+              0.0,
+              0.6000000000000001
+            ],
+            "acc_a": 0.875,
+            "acc_b": 0.625,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.125,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.875,
+            "acc_b": 0.875,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.125,
+            "ci95": [
+              0.0,
+              0.4169642857142841
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.0,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": -0.07692307692307693,
+            "ci95": [
+              -0.2503289473684205,
+              0.0
+            ],
+            "acc_a": 0.8461538461538461,
+            "acc_b": 0.9230769230769231,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.07692307692307693,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "gemini-3.8-flash": {
+        "verified_primary": {
+          "gold": {
+            "est": 0.07894736842105263,
+            "ci95": [
+              0.0,
+              0.17142857142857149
+            ],
+            "acc_a": 0.8157894736842105,
+            "acc_b": 0.7368421052631579,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              -0.07319331526648597,
+              0.07894736842105263
+            ],
+            "acc_a": 0.13157894736842105,
+            "acc_b": 0.13157894736842105,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": 0.03296703296703297,
+            "ci95": [
+              -0.021984126984127002,
+              0.09090909090909094
+            ],
+            "acc_a": 0.8241758241758241,
+            "acc_b": 0.7912087912087912,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": 0.02197802197802198,
+            "ci95": [
+              -0.01961764705882351,
+              0.06521739130434782
+            ],
+            "acc_a": 0.14285714285714285,
+            "acc_b": 0.12087912087912088,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              -0.07020676691729318,
+              0.07020676691729305
+            ],
+            "acc_a": 0.8148148148148148,
+            "acc_b": 0.8148148148148148,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": 0.037037037037037035,
+            "ci95": [
+              0.0,
+              0.0943849782293176
+            ],
+            "acc_a": 0.14814814814814814,
+            "acc_b": 0.1111111111111111,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.09090909090909091,
+            "ci95": [
+              0.0,
+              0.3076923076923077
+            ],
+            "acc_a": 0.7272727272727273,
+            "acc_b": 0.6363636363636364,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.09090909090909091,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.25,
+            "ci95": [
+              0.0,
+              0.6
+            ],
+            "acc_a": 0.875,
+            "acc_b": 0.625,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.125,
+            "ci95": [
+              0.0,
+              0.4
+            ],
+            "acc_a": 0.25,
+            "acc_b": 0.125,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.75,
+            "acc_b": 0.75,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": -0.125,
+            "ci95": [
+              -0.4,
+              0.0
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.25,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.9230769230769231,
+            "acc_b": 0.9230769230769231,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.07692307692307693,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "deepseek-v4-pro": {
+        "verified_primary": {
+          "gold": {
+            "est": 0.07894736842105263,
+            "ci95": [
+              -0.04878048780487809,
+              0.20838815789473658
+            ],
+            "acc_a": 0.6842105263157895,
+            "acc_b": 0.6052631578947368,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": 0.02631578947368421,
+            "ci95": [
+              0.0,
+              0.08574534161490668
+            ],
+            "acc_a": 0.18421052631578946,
+            "acc_b": 0.15789473684210525,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.06043956043956044,
+            "ci95": [
+              -0.15306992115027823,
+              0.03334269662921342
+            ],
+            "acc_a": 0.554945054945055,
+            "acc_b": 0.6153846153846154,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": 0.04395604395604396,
+            "ci95": [
+              -0.02105263157894735,
+              0.11538461538461538
+            ],
+            "acc_a": 0.1978021978021978,
+            "acc_b": 0.15384615384615385,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.16666666666666666,
+            "ci95": [
+              -0.29417211328976034,
+              -0.046511627906976716
+            ],
+            "acc_a": 0.46296296296296297,
+            "acc_b": 0.6296296296296297,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": 0.05555555555555555,
+            "ci95": [
+              -0.045472027972027956,
+              0.1667307692307689
+            ],
+            "acc_a": 0.2222222222222222,
+            "acc_b": 0.16666666666666666,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": 0.09090909090909091,
+            "ci95": [
+              0.0,
+              0.3076923076923077
+            ],
+            "acc_a": 0.7272727272727273,
+            "acc_b": 0.6363636363636364,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.09090909090909091,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.5,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.375,
+            "acc_b": 0.375,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": 0.125,
+            "ci95": [
+              -0.3333333333333333,
+              0.5
+            ],
+            "acc_a": 0.625,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "acc_a": 0.25,
+            "acc_b": 0.25,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": 0.15384615384615385,
+            "ci95": [
+              -0.1428571428571428,
+              0.4444444444444444
+            ],
+            "acc_a": 0.8461538461538461,
+            "acc_b": 0.6923076923076923,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.07692307692307693,
+            "ci95": [
+              0.0,
+              0.25032894736841926
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.0,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      },
+      "deepseek-flash": {
+        "verified_primary": {
+          "gold": {
+            "est": -0.039473684210526314,
+            "ci95": [
+              -0.20006756756756752,
+              0.11111111111111105
+            ],
+            "acc_a": 0.6710526315789473,
+            "acc_b": 0.7105263157894737,
+            "n_keys": 38
+          },
+          "dist": {
+            "est": 0.02631578947368421,
+            "ci95": [
+              -0.1333783783783783,
+              0.1818779904306217
+            ],
+            "acc_a": 0.15789473684210525,
+            "acc_b": 0.13157894736842105,
+            "n_keys": 38
+          }
+        },
+        "all_primary": {
+          "gold": {
+            "est": -0.1043956043956044,
+            "ci95": [
+              -0.1981319682675814,
+              -0.006088800112139104
+            ],
+            "acc_a": 0.554945054945055,
+            "acc_b": 0.6593406593406593,
+            "n_keys": 91
+          },
+          "dist": {
+            "est": 0.027472527472527472,
+            "ci95": [
+              -0.06875143348623854,
+              0.12503033980582506
+            ],
+            "acc_a": 0.21428571428571427,
+            "acc_b": 0.18681318681318682,
+            "n_keys": 91
+          }
+        },
+        "failed_primary": {
+          "gold": {
+            "est": -0.14814814814814814,
+            "ci95": [
+              -0.2759099616858236,
+              -0.036363636363636376
+            ],
+            "acc_a": 0.48148148148148145,
+            "acc_b": 0.6296296296296297,
+            "n_keys": 54
+          },
+          "dist": {
+            "est": 0.037037037037037035,
+            "ci95": [
+              -0.08510638297872342,
+              0.16072868663594464
+            ],
+            "acc_a": 0.25925925925925924,
+            "acc_b": 0.2222222222222222,
+            "n_keys": 54
+          }
+        },
+        "verified_primary_UAE": {
+          "gold": {
+            "est": -0.09090909090909091,
+            "ci95": [
+              -0.5,
+              0.3076923076923077
+            ],
+            "acc_a": 0.5454545454545454,
+            "acc_b": 0.6363636363636364,
+            "n_keys": 11
+          },
+          "dist": {
+            "est": 0.09090909090909091,
+            "ci95": [
+              -0.2222222222222222,
+              0.42857142857142855
+            ],
+            "acc_a": 0.18181818181818182,
+            "acc_b": 0.09090909090909091,
+            "n_keys": 11
+          }
+        },
+        "verified_primary_KSA": {
+          "gold": {
+            "est": 0.125,
+            "ci95": [
+              0.0,
+              0.4
+            ],
+            "acc_a": 0.625,
+            "acc_b": 0.5,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": 0.125,
+            "ci95": [
+              -0.3333333333333333,
+              0.5714285714285714
+            ],
+            "acc_a": 0.25,
+            "acc_b": 0.125,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_EGY": {
+          "gold": {
+            "est": -0.125,
+            "ci95": [
+              -0.5714285714285714,
+              0.33333333333333337
+            ],
+            "acc_a": 0.75,
+            "acc_b": 0.875,
+            "n_keys": 8
+          },
+          "dist": {
+            "est": -0.25,
+            "ci95": [
+              -0.6,
+              0.0
+            ],
+            "acc_a": 0.125,
+            "acc_b": 0.375,
+            "n_keys": 8
+          }
+        },
+        "verified_primary_SYR": {
+          "gold": {
+            "est": -0.07692307692307693,
+            "ci95": [
+              -0.25,
+              0.0
+            ],
+            "acc_a": 0.7692307692307693,
+            "acc_b": 0.8461538461538461,
+            "n_keys": 13
+          },
+          "dist": {
+            "est": 0.07692307692307693,
+            "ci95": [
+              0.0,
+              0.25
+            ],
+            "acc_a": 0.07692307692307693,
+            "acc_b": 0.0,
+            "n_keys": 13
+          }
+        },
+        "verified_primary_MAG": null
+      }
+    }
+  },
+  "verified_cells": [
+    {
+      "annotation_id": "EGY-001",
+      "dialect": "EGY",
+      "key": "professional_law::92"
+    },
+    {
+      "annotation_id": "EGY-002",
+      "dialect": "EGY",
+      "key": "professional_psychology::2"
+    },
+    {
+      "annotation_id": "EGY-007",
+      "dialect": "EGY",
+      "key": "security_studies::82"
+    },
+    {
+      "annotation_id": "EGY-012",
+      "dialect": "EGY",
+      "key": "public_relations::23"
+    },
+    {
+      "annotation_id": "EGY-020",
+      "dialect": "EGY",
+      "key": "world_religions::27"
+    },
+    {
+      "annotation_id": "EGY-021",
+      "dialect": "EGY",
+      "key": "high_school_world_history::70"
+    },
+    {
+      "annotation_id": "EGY-024",
+      "dialect": "EGY",
+      "key": "virology::6"
+    },
+    {
+      "annotation_id": "EGY-027",
+      "dialect": "EGY",
+      "key": "elementary_mathematics::9"
+    },
+    {
+      "annotation_id": "KSA-001",
+      "dialect": "KSA",
+      "key": "virology::69"
+    },
+    {
+      "annotation_id": "KSA-003",
+      "dialect": "KSA",
+      "key": "high_school_world_history::70"
+    },
+    {
+      "annotation_id": "KSA-004",
+      "dialect": "KSA",
+      "key": "college_medicine::39"
+    },
+    {
+      "annotation_id": "KSA-019",
+      "dialect": "KSA",
+      "key": "philosophy::98"
+    },
+    {
+      "annotation_id": "KSA-025",
+      "dialect": "KSA",
+      "key": "professional_law::72"
+    },
+    {
+      "annotation_id": "KSA-026",
+      "dialect": "KSA",
+      "key": "marketing::4"
+    },
+    {
+      "annotation_id": "KSA-028",
+      "dialect": "KSA",
+      "key": "abstract_algebra::77"
+    },
+    {
+      "annotation_id": "KSA-030",
+      "dialect": "KSA",
+      "key": "high_school_psychology::92"
+    },
+    {
+      "annotation_id": "SYR-004",
+      "dialect": "SYR",
+      "key": "high_school_psychology::61"
+    },
+    {
+      "annotation_id": "SYR-005",
+      "dialect": "SYR",
+      "key": "business_ethics::62"
+    },
+    {
+      "annotation_id": "SYR-006",
+      "dialect": "SYR",
+      "key": "college_medicine::60"
+    },
+    {
+      "annotation_id": "SYR-010",
+      "dialect": "SYR",
+      "key": "anatomy::65"
+    },
+    {
+      "annotation_id": "SYR-013",
+      "dialect": "SYR",
+      "key": "astronomy::90"
+    },
+    {
+      "annotation_id": "SYR-017",
+      "dialect": "SYR",
+      "key": "sociology::62"
+    },
+    {
+      "annotation_id": "SYR-018",
+      "dialect": "SYR",
+      "key": "security_studies::82"
+    },
+    {
+      "annotation_id": "SYR-021",
+      "dialect": "SYR",
+      "key": "professional_psychology::33"
+    },
+    {
+      "annotation_id": "SYR-022",
+      "dialect": "SYR",
+      "key": "virology::94"
+    },
+    {
+      "annotation_id": "SYR-026",
+      "dialect": "SYR",
+      "key": "human_aging::13"
+    },
+    {
+      "annotation_id": "SYR-027",
+      "dialect": "SYR",
+      "key": "global_facts::18"
+    },
+    {
+      "annotation_id": "SYR-028",
+      "dialect": "SYR",
+      "key": "international_law::9"
+    },
+    {
+      "annotation_id": "SYR-029",
+      "dialect": "SYR",
+      "key": "marketing::2"
+    },
+    {
+      "annotation_id": "UAE-006",
+      "dialect": "UAE",
+      "key": "global_facts::58"
+    },
+    {
+      "annotation_id": "UAE-007",
+      "dialect": "UAE",
+      "key": "world_religions::56"
+    },
+    {
+      "annotation_id": "UAE-009",
+      "dialect": "UAE",
+      "key": "virology::64"
+    },
+    {
+      "annotation_id": "UAE-011",
+      "dialect": "UAE",
+      "key": "high_school_world_history::83"
+    },
+    {
+      "annotation_id": "UAE-013",
+      "dialect": "UAE",
+      "key": "high_school_us_history::6"
+    },
+    {
+      "annotation_id": "UAE-014",
+      "dialect": "UAE",
+      "key": "elementary_mathematics::30"
+    },
+    {
+      "annotation_id": "UAE-015",
+      "dialect": "UAE",
+      "key": "high_school_macroeconomics::34"
+    },
+    {
+      "annotation_id": "UAE-020",
+      "dialect": "UAE",
+      "key": "high_school_psychology::27"
+    },
+    {
+      "annotation_id": "UAE-024",
+      "dialect": "UAE",
+      "key": "abstract_algebra::79"
+    },
+    {
+      "annotation_id": "UAE-028",
+      "dialect": "UAE",
+      "key": "anatomy::64"
+    },
+    {
+      "annotation_id": "UAE-030",
+      "dialect": "UAE",
+      "key": "management::78"
+    }
+  ]
+}

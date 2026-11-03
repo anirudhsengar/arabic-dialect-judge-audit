@@ -1,0 +1,34 @@
+{
+ "n_pairs": 2790,
+ "n_placebo": 279,
+ "classes": {
+  "whitespace_only": 6,
+  "punct_ws_only": 262,
+  "letters": 4,
+  "marks_punct_ws": 7
+ },
+ "by_dialect": {
+  "UAE": {
+   "whitespace_only": 5,
+   "punct_ws_only": 201,
+   "marks_punct_ws": 5,
+   "letters": 2
+  },
+  "MAG": {
+   "letters": 2,
+   "punct_ws_only": 19,
+   "whitespace_only": 1,
+   "marks_punct_ws": 1
+  },
+  "EGY": {
+   "punct_ws_only": 36
+  },
+  "SYR": {
+   "punct_ws_only": 5
+  },
+  "KSA": {
+   "marks_punct_ws": 1,
+   "punct_ws_only": 1
+  }
+ }
+}

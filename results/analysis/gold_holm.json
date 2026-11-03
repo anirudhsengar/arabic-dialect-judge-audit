@@ -1,0 +1,178 @@
+{
+  "method": "Per-judge test of the pointwise gold-acceptance change vs MSA, Holm-adjusted over 8 judges (post hoc).\n\nReads stored outputs only (results/<judge>.jsonl via ajd.analyze.load; read-only, no API calls) plus\nresults/analysis/pointwise_figure.json and identity_check.json for cross-checks.\n(1) Delta Gold = per-key mean over the 5 dialects of [accepted(v) - accepted(MSA)] over VALID pointwise\n    gold outputs (ajd.competence.paired_mean_over; the figure definition, = pointwise_figure delta_gold).\n    p: key-level sign-flip permutation test on the per-key differences (ajd.stats.signflip: 10,000 sign\n    vectors, default_rng(2026), two-sided), Holm-adjusted across the 8 judges.\n(2) Check of the figure caption's \"0.04 pp\" bound: CONTRASTS (dialect-minus-MSA Delta Gold / Delta Dist) valid-only\n    (figure definition) vs all-rows (identity_check dH / dF, invalid = not accepted); max |diff|.\n(3) For completeness: LEVELS, MSA H and F valid-only (accepted over valid rows) vs all-rows; max |diff|.\nOutput: results/analysis/gold_holm.json.\n",
+  "judges": {
+    "gpt-6.1-sol": {
+      "delta_gold": {
+        "est": -0.03515624999999999,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": 0.004492187500000001,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 6.938893903907228e-18,
+        "dDist": 6.938893903907228e-18
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "gpt-6-luna": {
+      "delta_gold": {
+        "est": -0.09941406249999998,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": -0.0205078125,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 2.7755575615628914e-17,
+        "dDist": 0.0
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "opus-5.5": {
+      "delta_gold": {
+        "est": -0.03632773938795656,
+        "n_keys": 1013,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": 0.0006581112207963142,
+        "n_keys": 1013
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 0.0003910106120434617,
+        "dDist": -0.00012313877920368298
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.007143819273399021,
+        "F": 0.0007223095414201214
+      }
+    },
+    "haiku-5.5": {
+      "delta_gold": {
+        "est": -0.09394531249999999,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": -0.024609374999999996,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 5.551115123125783e-17,
+        "dDist": -6.938893903907228e-18
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "gemini-4-argon": {
+      "delta_gold": {
+        "est": -0.029101562499999994,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": 0.010546875,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 0.00019531250000000625,
+        "dDist": -1.0408340855860843e-17
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "gemini-3.8-flash": {
+      "delta_gold": {
+        "est": -0.014453124999999995,
+        "n_keys": 1024,
+        "p_two": 0.0165983401659834,
+        "p_holm8": 0.0165983401659834
+      },
+      "delta_dist": {
+        "est": 0.00859375,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": -3.9898639947466563e-17,
+        "dDist": -1.0408340855860843e-17
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "deepseek-v4-pro": {
+      "delta_gold": {
+        "est": -0.073828125,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": 0.0162109375,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": 2.7755575615628914e-17,
+        "dDist": 6.938893903907228e-18
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    },
+    "deepseek-flash": {
+      "delta_gold": {
+        "est": -0.1087890625,
+        "n_keys": 1024,
+        "p_two": 9.999000099990002e-05,
+        "p_holm8": 0.0007999200079992001
+      },
+      "delta_dist": {
+        "est": 0.007421875000000003,
+        "n_keys": 1024
+      },
+      "contrast_valid_minus_all": {
+        "dGold": -2.7755575615628914e-17,
+        "dDist": 8.673617379884035e-18
+      },
+      "msa_level_valid_minus_all": {
+        "H": 0.0,
+        "F": 0.0
+      }
+    }
+  },
+  "holm_survivors_0.05": [
+    "gpt-6.1-sol",
+    "gpt-6-luna",
+    "opus-5.5",
+    "haiku-5.5",
+    "gemini-4-argon",
+    "gemini-3.8-flash",
+    "deepseek-v4-pro",
+    "deepseek-flash"
+  ],
+  "max_abs_contrast_diff": 0.0003910106120434617,
+  "max_abs_msa_level_diff": 0.007143819273399021,
+  "min_signflip_p_resolution": 9.999000099990002e-05
+}
