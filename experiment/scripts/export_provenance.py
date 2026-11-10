@@ -20,7 +20,7 @@ Provenance row fields:
   usage                  token counts reported by the provider (integer fields only, flattened), or null
   has_provider_metadata  false for rows logged before provider metadata was recorded
 
-The raw logs with provider metadata are not part of the anonymized release, so this script cannot be
+The raw logs with provider metadata are not part of this release, so this script cannot be
 re-run from the release package; it is included to document how the provenance files were produced.
 
 Usage (from experiment/):

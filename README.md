@@ -196,6 +196,12 @@ from this repository; the prompt hashes can be checked against `build_requests` 
   now empty. All tests pass.
 - `scripts/unpack_outputs.py` and `scripts/export_provenance.py` were added for the release.
 
+## Citation
+
+Anirudh Sengar. Do LLM Judges Grade Dialectal Arabic Reliably? A Controlled Audit on Parallel,
+Objectively Labelled Items. In *Procedia Computer Science* (Proceedings of ACLing 2026, the 8th
+International Conference on AI in Computational Linguistics), Elsevier, 2026.
+
 ## License
 
 Code: MIT (see `LICENSE`). Content derived from DialectalArabicMMLU (the sample files, prompts filled
