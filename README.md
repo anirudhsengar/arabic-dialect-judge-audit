@@ -198,7 +198,7 @@ from this repository; the prompt hashes can be checked against `build_requests` 
 
 ## Citation
 
-Anirudh Sengar. Do LLM Judges Grade Dialectal Arabic Reliably? A Controlled Audit on Parallel,
+Anirudh Sengar and Ahmed Awad. Do LLM Judges Grade Dialectal Arabic Reliably? A Controlled Audit on Parallel,
 Objectively Labelled Items. In *Procedia Computer Science* (Proceedings of ACLing 2026, the 8th
 International Conference on AI in Computational Linguistics), Elsevier, 2026.
 
