@@ -1,0 +1,287 @@
+{
+  "description": "Per-judge run summary derived from the raw collection logs by experiment/scripts/export_provenance.py. Timestamps are client-side UTC log times. api_route counts come from the per-row provider metadata; rows logged before metadata was recorded are counted under 'unknown (no provider metadata)'.",
+  "n_expected_per_judge": 72292,
+  "client_package_versions": {
+    "anthropic": "2.3.0",
+    "google-genai": "2.33.0",
+    "openai": "3.37.0"
+  },
+  "config_sha256": "b0eb38c6c64a49e5c796ff2ced9413269ec29849014c059a0e8d3ad769dbfc00",
+  "prompts_sha256": "454d33baeeb7fef814138e6fc17f23a13ee2eed97b8b545795a060aa3a4a1321",
+  "sample_sha256": {
+    "data/sample.json": "bd490230f006bc2f053910441fc5e483b3d4e7cf95285f314ac0d2e64d39333e",
+    "data/sample_items.parquet": "44a588bda29bf8b67a833b7dd30f2fb882d29800e93ec1e1633dce30d3b6b996"
+  },
+  "judges": {
+    "gpt-6.1-sol": {
+      "provider": "OpenAI",
+      "endpoint": "official API (Batch API)",
+      "base_url": "https://api.openai.com/v1",
+      "api_route_counts": {
+        "batch": 72292
+      },
+      "requested_model": "gpt-6.1-sol",
+      "served_model_counts": {
+        "gpt-6.1-sol": 72292
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 72292
+      },
+      "run_start": "2026-10-25T08:53:22.358191+00:00",
+      "run_end": "2026-10-25T11:43:08.588619+00:00",
+      "settings": {
+        "reasoning_effort": "low",
+        "max_completion_tokens": 2048
+      },
+      "settings_sha256": "0eccfebc18a80708d8df13862616ecdb7edddd8597bcc804fa82f0560e089d95",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 72292,
+      "provenance_file": "data/provenance/gpt-6.1-sol.provenance.jsonl.gz",
+      "provenance_file_sha256": "917b57bcfd50b982611445019e43e9397c51bcaa5489f85b33aecec3e3ee2dc1"
+    },
+    "gpt-6-luna": {
+      "provider": "OpenAI",
+      "endpoint": "official API (standard + Batch API)",
+      "base_url": "https://api.openai.com/v1",
+      "api_route_counts": {
+        "unknown (no provider metadata)": 4450,
+        "batch": 20,
+        "standard": 67822
+      },
+      "requested_model": "gpt-6-luna",
+      "served_model_counts": {
+        "null (no provider metadata)": 4450,
+        "gpt-6-luna": 67842
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 72292
+      },
+      "run_start": "2026-10-24T16:47:41.332285+00:00",
+      "run_end": "2026-10-25T09:18:20.384845+00:00",
+      "settings": {
+        "reasoning_effort": "none",
+        "max_completion_tokens": 64
+      },
+      "settings_sha256": "871fe3da6342112a91988a97d5a36dc96ac1bd77f3a7fee7f8e36325f3afc9c2",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 67842,
+      "provenance_file": "data/provenance/gpt-6-luna.provenance.jsonl.gz",
+      "provenance_file_sha256": "52d88ff30d8dd1ba38880949ae85e45562ad2f3dc64eae20fcab37b1c83e08e3"
+    },
+    "opus-5.5": {
+      "provider": "Anthropic",
+      "endpoint": "official API (standard + Batch API)",
+      "base_url": "https://api.anthropic.com",
+      "api_route_counts": {
+        "unknown (no provider metadata)": 262,
+        "standard": 67696,
+        "batch": 4334
+      },
+      "requested_model": "claude-opus-5-5",
+      "served_model_counts": {
+        "null (no provider metadata)": 262,
+        "claude-opus-5-5": 72030
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 262,
+        "end_turn": 71544,
+        "refusal": 486
+      },
+      "run_start": "2026-10-24T16:48:07.283640+00:00",
+      "run_end": "2026-10-25T08:01:26.464070+00:00",
+      "settings": {
+        "max_tokens": 1024,
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "low"
+        }
+      },
+      "settings_sha256": "50bdcd75c922a7db32077fc936028ae8299b939c0224e49702e8bb792066e10e",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 72030,
+      "provenance_file": "data/provenance/opus-5.5.provenance.jsonl.gz",
+      "provenance_file_sha256": "9d556b4ca21247d69557dafbf0f588142c855ec397dead8a21486d5ebe5f77ba"
+    },
+    "haiku-5.5": {
+      "provider": "Anthropic",
+      "endpoint": "official API (standard)",
+      "base_url": "https://api.anthropic.com",
+      "api_route_counts": {
+        "unknown (no provider metadata)": 2737,
+        "standard": 69555
+      },
+      "requested_model": "claude-haiku-5-5",
+      "served_model_counts": {
+        "null (no provider metadata)": 2737,
+        "claude-haiku-5-5": 69555
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 2737,
+        "end_turn": 69552,
+        "refusal": 3
+      },
+      "run_start": "2026-10-24T16:49:40.402558+00:00",
+      "run_end": "2026-10-25T07:30:11.847531+00:00",
+      "settings": {
+        "max_tokens": 64,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "settings_sha256": "479e2d5b66356c94327c1206d8fbeb258ba3d1abd52cdc0284d36c7050d2204b",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 69555,
+      "provenance_file": "data/provenance/haiku-5.5.provenance.jsonl.gz",
+      "provenance_file_sha256": "fbb19a7dad4f37f0cf2536dd1a158c83a330b0d2db70c30c3388296209d7ebb4"
+    },
+    "gemini-4-argon": {
+      "provider": "Google",
+      "endpoint": "official API (Batch API)",
+      "base_url": "https://generativelanguage.googleapis.com/",
+      "api_route_counts": {
+        "batch": 72292
+      },
+      "requested_model": "gemini-4-argon",
+      "served_model_counts": {
+        "gemini-4-argon": 72292
+      },
+      "finish_reason_counts": {
+        "STOP": 72288,
+        "null (not recorded)": 4
+      },
+      "run_start": "2026-10-25T04:58:07.454983+00:00",
+      "run_end": "2026-10-25T07:29:38.909459+00:00",
+      "settings": {
+        "thinking_config": {
+          "thinking_level": "low"
+        },
+        "max_output_tokens": 4096
+      },
+      "settings_sha256": "9b574a36739975404cd90d16ebf6c57a6c46ae3d76c4f1d3fbcf90dbe5d8c192",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 72292,
+      "provenance_file": "data/provenance/gemini-4-argon.provenance.jsonl.gz",
+      "provenance_file_sha256": "f4c5d66db582aad03e855881a2a6c8911d070c961f794ac9b2b52b552592dea7"
+    },
+    "gemini-3.8-flash": {
+      "provider": "Google",
+      "endpoint": "official API (Batch API)",
+      "base_url": "https://generativelanguage.googleapis.com/",
+      "api_route_counts": {
+        "batch": 72292
+      },
+      "requested_model": "gemini-3.8-flash",
+      "served_model_counts": {
+        "gemini-3.8-flash": 72292
+      },
+      "finish_reason_counts": {
+        "STOP": 72292
+      },
+      "run_start": "2026-10-25T04:58:23.702738+00:00",
+      "run_end": "2026-10-25T07:53:58.336247+00:00",
+      "settings": {
+        "thinking_config": {
+          "thinking_level": "low"
+        },
+        "max_output_tokens": 4096
+      },
+      "settings_sha256": "9b574a36739975404cd90d16ebf6c57a6c46ae3d76c4f1d3fbcf90dbe5d8c192",
+      "settings_match_config": true,
+      "response_format": "json_schema",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 72292,
+      "provenance_file": "data/provenance/gemini-3.8-flash.provenance.jsonl.gz",
+      "provenance_file_sha256": "784ef2b41d6c307e4cdcde6cdd38be4bc18c924d309854e404cafb88f6c0ddad"
+    },
+    "deepseek-v4-pro": {
+      "provider": "DeepSeek",
+      "endpoint": "official API (standard)",
+      "base_url": "https://api.deepseek.com",
+      "api_route_counts": {
+        "unknown (no provider metadata)": 5871,
+        "standard": 66421
+      },
+      "requested_model": "deepseek-v4-pro",
+      "served_model_counts": {
+        "null (no provider metadata)": 5871,
+        "deepseek-v4-pro": 66421
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 72292
+      },
+      "run_start": "2026-10-24T16:50:33.790249+00:00",
+      "run_end": "2026-10-25T07:26:51.154293+00:00",
+      "settings": {
+        "temperature": 0,
+        "max_tokens": 1024,
+        "extra_body": {
+          "thinking": {
+            "type": "disabled"
+          }
+        }
+      },
+      "settings_sha256": "fe852719ba852e0c20df3c0b34f03527ce0dfa33c2d1778a66f960acf400b6ce",
+      "settings_match_config": true,
+      "response_format": "json_object",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 66421,
+      "provenance_file": "data/provenance/deepseek-v4-pro.provenance.jsonl.gz",
+      "provenance_file_sha256": "939207143553041d4a8d7f7fe94644048339a0a36aa6fc82500f7aafa0fd43fd"
+    },
+    "deepseek-flash": {
+      "provider": "DeepSeek",
+      "endpoint": "official API (standard)",
+      "base_url": "https://api.deepseek.com",
+      "api_route_counts": {
+        "unknown (no provider metadata)": 262,
+        "standard": 72030
+      },
+      "requested_model": "deepseek-flash",
+      "served_model_counts": {
+        "null (no provider metadata)": 262,
+        "deepseek-flash": 72030
+      },
+      "finish_reason_counts": {
+        "null (not recorded)": 72292
+      },
+      "run_start": "2026-10-24T16:50:55.363455+00:00",
+      "run_end": "2026-10-25T07:21:48.317403+00:00",
+      "settings": {
+        "temperature": 0,
+        "max_tokens": 1024,
+        "extra_body": {
+          "thinking": {
+            "type": "disabled"
+          }
+        }
+      },
+      "settings_sha256": "fe852719ba852e0c20df3c0b34f03527ce0dfa33c2d1778a66f960acf400b6ce",
+      "settings_match_config": true,
+      "response_format": "json_object",
+      "n_expected": 72292,
+      "n_received": 72292,
+      "n_with_provider_metadata": 72030,
+      "provenance_file": "data/provenance/deepseek-flash.provenance.jsonl.gz",
+      "provenance_file_sha256": "49156cdd74bbfb03f1542abca7b7f4a2f59b994889456c7e81e1398ccb3d4666"
+    }
+  }
+}

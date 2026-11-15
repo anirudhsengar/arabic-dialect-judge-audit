@@ -1,0 +1,484 @@
+{
+  "judge": "opus-5.5",
+  "identical_model_params_across_modes": true,
+  "params": "{\"max_tokens\": 1024, \"output_config\": {\"effort\": \"low\"}, \"thinking\": {\"type\": \"adaptive\"}}",
+  "rows_by_mode_and_condition": {
+    "pair_ar": {
+      "standard": 10002,
+      "batch": 4334
+    },
+    "pair_en": {
+      "standard": 14336,
+      "batch": 0
+    },
+    "pair_en_rep": {
+      "standard": 1792,
+      "batch": 0
+    },
+    "point": {
+      "standard": 14336,
+      "batch": 0
+    },
+    "reg_forced": {
+      "standard": 5580,
+      "batch": 0
+    },
+    "reg_forced_msaq": {
+      "standard": 5580,
+      "batch": 0
+    },
+    "reg_tie": {
+      "standard": 5580,
+      "batch": 0
+    },
+    "solve": {
+      "standard": 7168,
+      "batch": 0
+    },
+    "verbose": {
+      "standard": 1792,
+      "batch": 0
+    },
+    "verbose_gold": {
+      "standard": 1792,
+      "batch": 0
+    }
+  },
+  "pair_ar_by_variety": {
+    "EGY": {
+      "standard": 1428,
+      "batch": 620
+    },
+    "ENG": {
+      "standard": 1430,
+      "batch": 618
+    },
+    "KSA": {
+      "standard": 1428,
+      "batch": 620
+    },
+    "MAG": {
+      "standard": 1428,
+      "batch": 620
+    },
+    "MSA": {
+      "standard": 1430,
+      "batch": 618
+    },
+    "SYR": {
+      "standard": 1428,
+      "batch": 620
+    },
+    "UAE": {
+      "standard": 1430,
+      "batch": 618
+    }
+  },
+  "pair_ar_by_key": {
+    "n_keys_all_standard": 714,
+    "n_keys_all_batch": 309,
+    "n_keys_split": 1,
+    "batch_req_idx_range": [
+      51210,
+      72289
+    ],
+    "standard_req_idx_range_pair_ar": [
+      3,
+      51204
+    ],
+    "batch_key_positions": [
+      716,
+      1024
+    ],
+    "standard_key_positions": [
+      1,
+      714
+    ],
+    "split_keys": {
+      "marketing::19": {
+        "position": 715,
+        "batch_rows": {
+          "SYR/good_first": 1.0,
+          "KSA/good_second": 1.0,
+          "EGY/good_second": 1.0,
+          "KSA/good_first": 1.0,
+          "EGY/good_first": 1.0,
+          "MAG/good_second": 1.0,
+          "SYR/good_second": 1.0,
+          "MAG/good_first": 1.0
+        },
+        "standard_rows": {
+          "ENG/good_first": 1.0,
+          "MSA/good_first": 1.0,
+          "MSA/good_second": 1.0,
+          "ENG/good_second": 1.0,
+          "UAE/good_first": 1.0,
+          "UAE/good_second": 1.0
+        }
+      }
+    },
+    "n_batch_rows_with_failed_sync_attempt": 3982,
+    "n_failed_sync_attempts": 3982,
+    "contiguous_in_request_order": true
+  },
+  "domains": {
+    "batch_keys": {
+      "marketing": 21,
+      "moral_scenarios": 24,
+      "nutrition": 24,
+      "philosophy": 24,
+      "prehistory": 24,
+      "professional_law": 24,
+      "professional_psychology": 24,
+      "public_relations": 24,
+      "security_studies": 24,
+      "sociology": 24,
+      "us_foreign_policy": 24,
+      "virology": 24,
+      "world_religions": 24
+    },
+    "standard_keys": {
+      "abstract_algebra": 32,
+      "anatomy": 32,
+      "astronomy": 32,
+      "business_ethics": 32,
+      "clinical_knowledge": 32,
+      "college_computer_science": 32,
+      "college_medicine": 32,
+      "conceptual_physics": 32,
+      "elementary_mathematics": 32,
+      "global_facts": 32,
+      "high_school_chemistry": 32,
+      "high_school_geography": 32,
+      "high_school_macroeconomics": 32,
+      "high_school_psychology": 32,
+      "high_school_us_history": 32,
+      "high_school_world_history": 32,
+      "human_aging": 32,
+      "international_law": 32,
+      "management": 32,
+      "marketing": 10,
+      "moral_scenarios": 8,
+      "nutrition": 8,
+      "philosophy": 8,
+      "prehistory": 8,
+      "professional_law": 8,
+      "professional_psychology": 8,
+      "public_relations": 8,
+      "security_studies": 8,
+      "sociology": 8,
+      "us_foreign_policy": 8,
+      "virology": 8,
+      "world_religions": 8
+    }
+  },
+  "mode_check": {
+    "rubric_effect_pair_ar_minus_pair_en_7var": {
+      "batch_keys": {
+        "est": 0.003929727230698103,
+        "ci95": [
+          -0.003226047303264345,
+          0.011132984997658654
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": -0.0005002000800320124,
+        "ci95": [
+          -0.0035162982112081757,
+          0.002324198983699351
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": 0.004429927310730115,
+        "ci95": [
+          -0.003228019539398625,
+          0.01221456246890798
+        ]
+      }
+    },
+    "rubric_effect_dialects": {
+      "batch_keys": {
+        "est": 0.004207119741100323,
+        "ci95": [
+          -0.0040404040404040395,
+          0.01294781970440061
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": 0.0005602240896358547,
+        "ci95": [
+          -0.0031118499344875796,
+          0.003961101238328957
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": 0.003646895651464468,
+        "ci95": [
+          -0.0054534996671319206,
+          0.012869181903634163
+        ]
+      }
+    },
+    "rubric_effect_MSA": {
+      "batch_keys": {
+        "est": 0.0,
+        "ci95": [
+          -0.016233766233766232,
+          0.015481078014729912
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": -0.0063025210084033615,
+        "ci95": [
+          -0.013611292938774165,
+          0.0013869625520110957
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": 0.0063025210084033615,
+        "ci95": [
+          -0.011670819697894127,
+          0.02392573869692302
+        ]
+      }
+    },
+    "pair_ar_dialect_gap": {
+      "batch_keys": {
+        "est": -0.02815533980582524,
+        "ci95": [
+          -0.04528277165288565,
+          -0.01131642437364679
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": -0.006442577030812323,
+        "ci95": [
+          -0.012978224901195014,
+          0.0002766636464891892
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": -0.02171276277501292,
+        "ci95": [
+          -0.040380299836738326,
+          -0.0031870147984787325
+        ]
+      }
+    },
+    "pair_en_dialect_gap_same_key_groups": {
+      "batch_keys": {
+        "est": -0.032362459546925564,
+        "ci95": [
+          -0.04810335463926139,
+          -0.01774142507145774
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": -0.01330532212885154,
+        "ci95": [
+          -0.021030821355877905,
+          -0.006213383658548173
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": -0.01905713741807402,
+        "ci95": [
+          -0.036597627666059826,
+          -0.0028892804519789557
+        ]
+      }
+    },
+    "did_dialect_gap_pair_ar_minus_pair_en": {
+      "batch_keys": {
+        "est": 0.004207119741100325,
+        "ci95": [
+          -0.013470717104823067,
+          0.022581197525408745
+        ],
+        "n_keys": 309
+      },
+      "standard_keys": {
+        "est": 0.0068627450980392165,
+        "ci95": [
+          -0.0009629608167980114,
+          0.014722734121464994
+        ],
+        "n_keys": 714
+      },
+      "diff_batch_minus_standard": {
+        "est": -0.0026556253569388916,
+        "ci95": [
+          -0.02293807368999964,
+          0.017574334274630937
+        ]
+      }
+    },
+    "accuracy": {
+      "pair_ar_MSA": {
+        "batch_keys": {
+          "est": 0.8980582524271845,
+          "ci95": [
+            0.8708545796923598,
+            0.925249169435216
+          ],
+          "n_keys": 309
+        },
+        "standard_keys": {
+          "est": 0.9586834733893558,
+          "ci95": [
+            0.9456351639368195,
+            0.9706713424565783
+          ],
+          "n_keys": 714
+        },
+        "diff_batch_minus_standard": {
+          "est": -0.06062522096217127,
+          "ci95": [
+            -0.09163565730812966,
+            -0.030130748950999046
+          ]
+        }
+      },
+      "pair_ar_dialect_mean": {
+        "batch_keys": {
+          "est": 0.8699029126213591,
+          "ci95": [
+            0.8411926024302375,
+            0.8963535437430785
+          ],
+          "n_keys": 309
+        },
+        "standard_keys": {
+          "est": 0.9522408963585434,
+          "ci95": [
+            0.9404786402759924,
+            0.9636369846000995
+          ],
+          "n_keys": 714
+        },
+        "diff_batch_minus_standard": {
+          "est": -0.08233798373718426,
+          "ci95": [
+            -0.11371072030361769,
+            -0.052077709557224
+          ]
+        }
+      },
+      "pair_ar_ENG": {
+        "batch_keys": {
+          "est": 0.9271844660194175,
+          "ci95": [
+            0.9018936387041407,
+            0.9509826407627271
+          ],
+          "n_keys": 309
+        },
+        "standard_keys": {
+          "est": 0.9677871148459384,
+          "ci95": [
+            0.9553680372127814,
+            0.9788145709528984
+          ],
+          "n_keys": 714
+        },
+        "diff_batch_minus_standard": {
+          "est": -0.04060264882652087,
+          "ci95": [
+            -0.06694966131225834,
+            -0.01318113417195269
+          ]
+        }
+      },
+      "pair_en_MSA": {
+        "batch_keys": {
+          "est": 0.8980582524271845,
+          "ci95": [
+            0.8694267515923567,
+            0.925250562150555
+          ],
+          "n_keys": 309
+        },
+        "standard_keys": {
+          "est": 0.9649859943977591,
+          "ci95": [
+            0.9521117189546434,
+            0.976227904040404
+          ],
+          "n_keys": 714
+        },
+        "diff_batch_minus_standard": {
+          "est": -0.0669277419705746,
+          "ci95": [
+            -0.0963729910108268,
+            -0.03694427406237177
+          ]
+        }
+      },
+      "pair_en_dialect_mean": {
+        "batch_keys": {
+          "est": 0.8656957928802589,
+          "ci95": [
+            0.8373820396892827,
+            0.8926228603283562
+          ],
+          "n_keys": 309
+        },
+        "standard_keys": {
+          "est": 0.9516806722689075,
+          "ci95": [
+            0.9395859883438563,
+            0.9631517874737257
+          ],
+          "n_keys": 714
+        },
+        "diff_batch_minus_standard": {
+          "est": -0.08598487938864863,
+          "ci95": [
+            -0.1167304398757288,
+            -0.055416568530461896
+          ]
+        }
+      }
+    },
+    "pair_ar_invalid_rate": {
+      "batch_rows": 0.02030456852791878,
+      "standard_rows": 0.0001999600079984003
+    },
+    "invalid_rate_by_key_group": {
+      "pair_ar": {
+        "batch_keys": 0.020342117429496098,
+        "standard_keys": 0.0002000800320127727
+      },
+      "pair_en": {
+        "batch_keys": 0.020342117429496098,
+        "standard_keys": 0.0002000800320127727
+      },
+      "point": {
+        "batch_keys": 0.02542764678687004,
+        "standard_keys": 0.0010004001600639745
+      },
+      "solve": {
+        "batch_keys": 0.02265372168284785,
+        "standard_keys": 0.0
+      }
+    },
+    "batch_invalid_stop_reasons": {
+      "refusal": 88
+    },
+    "batch_invalid_by_domain": {
+      "virology": 74,
+      "security_studies": 14
+    }
+  },
+  "notes": "Mode is confounded with key position (batch = last keys in request order); the split key has different varieties/orders in each mode, so no within-key comparison is possible. Group contrasts compare different keys, so they bound but cannot isolate a mode effect; pair_en (all standard mode) on the same key groups is the key-difficulty baseline."
+}

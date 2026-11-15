@@ -1,0 +1,151 @@
+annotation_id,key,domain,dialect,stratum,gold_candidate,distractor_candidate,gold_index,distractor_index,english_gold,english_distractor,gold_same_as_msa,distr_same_as_msa,q_word_jacc,requested_gold_stratum,stratum_fallback,selected_by,meets_criteria,n_judges_msa_gold_acc_dialect_gold_rej
+UAE-001,college_medicine::96,college_medicine,UAE,primary,1,2,2,3,"After first walking outside on a sunny day, you no longer are blinded by the initial brightness of the light.","After first walking into an anatomy lab, you no longer notice the smell of formaldehyde.",True,False,0.3529,gold_same,False,,,0
+UAE-002,marketing::62,marketing,UAE,primary,1,2,2,0,Sponsorship.,Advertising.,False,False,0.2857,gold_differs,False,,,0
+UAE-003,astronomy::61,astronomy,UAE,primary,2,1,1,3,Most rocks on the Moon’s surface are older than those on the Earth’s surface.,The Moon was once entirely molten.,True,True,0.1765,gold_same,False,,,2
+UAE-004,clinical_knowledge::73,clinical_knowledge,UAE,diagnostic,2,1,1,2,the use of genetic manipulation techniques to enhance performance in sport.,the activation or inhibition of genes to mask drug taking by athletes.,True,True,0.125,,,low_overlap,low_overlap;grammar_fit,0
+UAE-005,sociology::53,sociology,UAE,primary,2,1,1,2,"revive it, by reaffirming a commitment to freedom of speech","reproduce it, by emphasizing face-to-face contact with peer groups",False,False,0.5556,gold_differs,False,,,2
+UAE-006,global_facts::58,global_facts,UAE,primary,2,1,2,0,0.09,0.02,True,True,0.3636,gold_same,False,,,1
+UAE-007,world_religions::56,world_religions,UAE,primary,2,1,0,2,Jupiter,Dionysius,False,True,0.7778,gold_differs,False,,,0
+UAE-008,clinical_knowledge::18,clinical_knowledge,UAE,diagnostic,1,2,1,2,involve the addition or removal of a phosphate group.,involve the addition or removal of a ketone group.,True,True,0.25,,,grammar_fit,grammar_fit,0
+UAE-009,virology::64,virology,UAE,primary,1,2,0,1,Three segmented negative stranded RNA viruses with anti-sense expression,Highly mutable RNA viruses,False,False,0.2667,gold_differs,False,,,1
+UAE-010,human_aging::83,human_aging,UAE,primary,2,1,1,3,Presbycusis,Conductive loss,True,True,0.05,gold_same,False,,low_overlap,1
+UAE-011,high_school_world_history::83,high_school_world_history,UAE,primary,1,2,3,1,apartheid.,spheres of influence.,True,True,0.4554,gold_same,False,,grammar_fit,2
+UAE-012,high_school_geography::43,high_school_geography,UAE,primary,2,1,3,1,TNCs are generally controlled by foreign governments.,Most TNCs produce and sell manufactured goods.,False,False,0.4,gold_differs,False,,,1
+UAE-013,high_school_us_history::6,high_school_us_history,UAE,primary,1,2,3,0,Surprise that Native Americans could learn English and serve as cultural intermediaries.,The only good Indian is a dead Indian.,False,False,0.2262,gold_differs,False,,,0
+UAE-014,elementary_mathematics::30,elementary_mathematics,UAE,primary,2,1,1,3,5.7,22.68,True,True,0.5,gold_same,False,,,0
+UAE-015,high_school_macroeconomics::34,high_school_macroeconomics,UAE,primary,2,1,3,1,Inflation,Bankruptcy,False,False,0.6316,gold_differs,False,,,1
+UAE-016,professional_law::47,professional_law,UAE,primary,2,1,0,2,"Yes, it will dismiss on the basis that the publication is made to the manager alone.","No, it will not dismiss because the circumstances show that all of the elements of defamation are all present.",False,False,0.3579,gold_differs,False,,,0
+UAE-017,philosophy::68,philosophy,UAE,primary,1,2,0,2,delight.,pleasure.,True,True,0.5556,gold_same,False,,grammar_fit,0
+UAE-018,conceptual_physics::66,conceptual_physics,UAE,diagnostic,1,2,1,2,frequency,Both,True,False,0.1667,,,option_ref,grammar_fit;option_ref,0
+UAE-019,moral_scenarios::56,moral_scenarios,UAE,primary,1,2,2,0,"Not wrong, Wrong","Wrong, Wrong",False,False,0.3906,gold_same,True,,,0
+UAE-020,high_school_psychology::27,high_school_psychology,UAE,primary,1,2,3,2,move his left hand,speak intelligibly,True,True,0.48,gold_same,False,,grammar_fit,0
+UAE-021,prehistory::62,prehistory,UAE,primary,2,1,1,0,changed rapidly.,emphasized flakes over blades.,True,False,0.75,gold_same,False,,grammar_fit,1
+UAE-022,marketing::34,marketing,UAE,diagnostic,1,2,2,1,Aesthetic realm.,Educational realm.,False,False,0.1212,,,low_overlap,low_overlap,0
+UAE-023,security_studies::81,security_studies,UAE,primary,2,1,2,0,"Category B agents include food and water security threats, with moderate morbidity rates.","Category B agents are those that present little to no risk or morbidity within infected populations, but can have detrimental effects on the ability of a group to perform physical tasks.",False,False,0.5263,gold_differs,False,,,1
+UAE-024,abstract_algebra::79,abstract_algebra,UAE,primary,1,2,2,0,"True, False","True, True",False,False,0.6364,gold_differs,False,,,0
+UAE-025,nutrition::10,nutrition,UAE,primary,1,2,2,3,Vitamin B12,Calcium,True,True,0.3333,gold_same,False,,,0
+UAE-026,moral_scenarios::65,moral_scenarios,UAE,diagnostic,1,2,3,2,"Not wrong, Not wrong","Not wrong, Wrong",False,False,0.3333,,,gold_reject,gold_reject,4
+UAE-027,clinical_knowledge::20,clinical_knowledge,UAE,diagnostic,1,2,3,0,glycolysis is activated at the onset of exercise.,oxygen is readily available.,True,False,0.375,,,gold_reject,gold_reject;grammar_fit,4
+UAE-028,anatomy::64,anatomy,UAE,primary,2,1,2,0,Pulmonary arteries,Inferior vena cava,False,True,0.2,gold_differs,False,,,0
+UAE-029,us_foreign_policy::17,us_foreign_policy,UAE,primary,2,1,2,0,It encourages liberalization of global trade,It encourages the use of tariffs,False,True,0.7778,gold_differs,False,,,1
+UAE-030,management::78,management,UAE,primary,2,1,0,2,"Guiding, mentoring and motivating","Guiding, demonstrating and motivating",True,True,0.7143,gold_same,False,,,0
+KSA-001,virology::69,virology,KSA,primary,2,1,0,1,Transfusion blood is screened,Vaccine has been developed,True,True,0.2857,gold_same,False,,,0
+KSA-002,conceptual_physics::79,conceptual_physics,KSA,diagnostic,1,2,2,0,Either of these,current,False,True,0.0909,,,option_ref,low_overlap;option_ref,0
+KSA-003,high_school_world_history::70,high_school_world_history,KSA,primary,1,2,1,0,Collective defense,Capitalism,True,True,0.9086,gold_same,False,,,0
+KSA-004,college_medicine::39,college_medicine,KSA,primary,1,2,2,0,Water,Oxaloacetate,True,True,0.2,gold_same,False,,,0
+KSA-005,clinical_knowledge::92,clinical_knowledge,KSA,primary,2,1,3,2,bound to albumin.,combined with glucose.,True,False,0.7778,gold_same,False,,grammar_fit,0
+KSA-006,anatomy::52,anatomy,KSA,primary,2,1,2,1,skilled motor movements decussate in the pyramids.,skilled movements decussate in the medial lemniscus,False,False,0.7143,gold_differs,False,,,0
+KSA-007,management::77,management,KSA,primary,2,1,1,2,Time and motion studies,Work psychology,True,True,0.2727,gold_same,False,,,0
+KSA-008,us_foreign_policy::34,us_foreign_policy,KSA,primary,1,2,3,1,Both b and c,Exceptionalism was enhanced by America's status as the 'leader of the free world',False,True,0.5455,gold_differs,False,,option_ref,0
+KSA-009,astronomy::75,astronomy,KSA,primary,2,1,3,2,A and B,A source of organic molecules,True,True,0.1667,gold_same,False,,option_ref,0
+KSA-010,high_school_geography::34,high_school_geography,KSA,primary,2,1,1,2,tropical forests.,flood plains.,True,True,0.3,gold_same,False,,grammar_fit,0
+KSA-011,conceptual_physics::72,conceptual_physics,KSA,primary,1,2,2,1,more than doubles,doubles,True,True,0.1111,gold_same,False,,low_overlap;grammar_fit,1
+KSA-012,professional_law::19,professional_law,KSA,diagnostic,2,1,0,2,larceny.,assault.,True,True,0.1038,,,low_overlap,low_overlap;grammar_fit,0
+KSA-013,professional_psychology::43,professional_psychology,KSA,diagnostic,1,2,3,1,determining underutilization in workforce labor marker comparisons,setting wages and salaries,True,True,0.5455,,,grammar_fit,grammar_fit,1
+KSA-014,moral_scenarios::60,moral_scenarios,KSA,primary,2,1,3,0,"Not wrong, Not wrong","Wrong, Wrong",False,True,0.1558,gold_differs,False,,,2
+KSA-015,high_school_us_history::10,high_school_us_history,KSA,primary,1,2,2,3,the passage of an act creating higher tariff rates.,"the funding of ""internal improvements.""",True,True,0.9348,gold_same,False,,grammar_fit,0
+KSA-016,moral_scenarios::45,moral_scenarios,KSA,diagnostic,1,2,2,3,"Not wrong, Wrong","Not wrong, Not wrong",False,False,0.1707,,,gold_reject,gold_reject,4
+KSA-017,security_studies::93,security_studies,KSA,primary,1,2,0,2,1970s,1960s,True,True,0.4737,gold_same,False,,,1
+KSA-018,global_facts::66,global_facts,KSA,primary,2,1,2,1,some countries have had relatively significant growth rates.,the Democratic Republic of Congo has become poorer than it initially was in 1980.,False,False,0.4167,gold_differs,False,,gold_reject,4
+KSA-019,philosophy::98,philosophy,KSA,primary,1,2,1,2,implausibly places an “upper bound” on moral worthiness.,yields a theory that is too demanding.,False,False,0.5,gold_differs,False,,,1
+KSA-020,prehistory::91,prehistory,KSA,primary,1,2,0,2,1 percent,30 percent,False,False,0.4667,gold_differs,False,,gold_reject,3
+KSA-021,college_computer_science::98,college_computer_science,KSA,primary,2,1,3,0,I and II,I only,True,False,0.5263,gold_same,False,,,0
+KSA-022,world_religions::5,world_religions,KSA,primary,2,1,3,2,All of the above,Dignity of all human beings,False,False,0.3333,gold_differs,False,,option_ref,0
+KSA-023,high_school_chemistry::53,high_school_chemistry,KSA,primary,2,1,3,0,Making the reaction vessel smaller,Decreasing the temperature,False,True,0.0909,gold_differs,False,,low_overlap,1
+KSA-024,philosophy::61,philosophy,KSA,diagnostic,2,1,1,2,are independent: You can accept either part without accepting the other.,are provable from self-evident premises.,False,False,0.0769,,,low_overlap,gold_reject;low_overlap,4
+KSA-025,professional_law::72,professional_law,KSA,primary,1,2,0,2,Service as required by State B's rules of civil procedure.,Service by emailing copies of the summons and complaint to the athletic director and the university president.,False,False,0.6102,gold_differs,False,,,0
+KSA-026,marketing::4,marketing,KSA,primary,1,2,2,0,Category-killer stores.,Speciality stores.,False,False,0.2286,gold_differs,False,,,0
+KSA-027,nutrition::24,nutrition,KSA,primary,1,2,1,0,The increase in blood glucose concentration after consuming the food compared with that after consuming an equivalent amount of white bread.,The increase in blood glucose concentration after consuming the food.,False,False,0.4545,gold_differs,False,,,0
+KSA-028,abstract_algebra::77,abstract_algebra,KSA,primary,2,1,2,1,"True, False","False, False",False,True,0.7368,gold_differs,False,,,0
+KSA-029,college_computer_science::40,college_computer_science,KSA,diagnostic,2,1,3,2,"I, II, and III",I and III only,False,False,0.5833,,,gold_reject,gold_reject,3
+KSA-030,high_school_psychology::92,high_school_psychology,KSA,primary,2,1,1,0,a compulsion,a delusion,True,True,0.1176,gold_same,False,,low_overlap;grammar_fit,0
+EGY-001,professional_law::92,professional_law,EGY,primary,2,1,1,2,"A juror, in violation of the court's instructions, read a newspaper article implicating the defendant in several other similar schemes.",Ajuror fell asleep during defense counsel's closing argument.,False,False,0.215,gold_differs,False,,,2
+EGY-002,professional_psychology::2,professional_psychology,EGY,primary,1,2,2,1,reinforced practice,modeling,False,False,0.1556,gold_differs,False,,,1
+EGY-003,marketing::4,marketing,EGY,primary,2,1,2,0,Category-killer stores.,Speciality stores.,False,True,0.1143,gold_differs,False,,gold_reject;low_overlap,3
+EGY-004,high_school_psychology::86,high_school_psychology,EGY,primary,2,1,2,0,The psychologist is testing the students in the two schools at two different times.,The psychologist is comparing two different schools.,False,False,0.1803,gold_differs,False,,,1
+EGY-005,abstract_algebra::61,abstract_algebra,EGY,primary,2,1,1,0,"False, False","True, True",False,False,0.5,gold_differs,False,,,0
+EGY-006,prehistory::4,prehistory,EGY,primary,2,1,3,0,tens of millions,100000,False,True,0.4706,gold_differs,False,,,0
+EGY-007,security_studies::82,security_studies,EGY,primary,1,2,0,3,Business networks,Computer networks,True,True,0.3889,gold_same,False,,,2
+EGY-008,college_computer_science::53,college_computer_science,EGY,primary,2,1,3,1,(n-1)/n,1/(n(n-1)),True,True,0.5312,gold_same,False,,,0
+EGY-009,high_school_geography::74,high_school_geography,EGY,diagnostic,1,2,3,1,edge city.,primate city.,True,True,0.1379,,,grammar_fit,gold_reject;grammar_fit,3
+EGY-010,nutrition::17,nutrition,EGY,primary,2,1,0,2,"Acetaldehyde, acetate,","Acetyl-CoA, lipids,",True,True,0.7143,gold_same,False,,,0
+EGY-011,college_medicine::24,college_medicine,EGY,diagnostic,1,2,1,0,the components of the electron transport chain.,the enzymes of the tricarboxylic acid cycle (Krebs' cycle).,True,True,0.1667,,,gold_reject,gold_reject;grammar_fit,3
+EGY-012,public_relations::23,public_relations,EGY,primary,1,2,2,0,Familiarity with subject or issue,Reputation,True,True,0.1724,gold_same,False,,,0
+EGY-013,human_aging::31,human_aging,EGY,diagnostic,2,1,2,3,Confused and disoriented,Sleepy and lazy,True,True,0.0435,,,low_overlap,low_overlap,1
+EGY-014,anatomy::11,anatomy,EGY,primary,1,2,3,2,resorb bone and differentiate from monocytes.,deposit bone and differentiate from monocytes.,True,False,0.3333,gold_same,False,,grammar_fit,2
+EGY-015,us_foreign_policy::1,us_foreign_policy,EGY,diagnostic,2,1,3,1,All of the above,"Domestic environment, government and bureaucracy",False,False,0.4762,,,option_ref,option_ref,2
+EGY-016,high_school_macroeconomics::1,high_school_macroeconomics,EGY,primary,2,1,3,2,raise the price level.,raise real output and lower the price level.,True,True,0.6087,gold_same,False,,grammar_fit,0
+EGY-017,conceptual_physics::11,conceptual_physics,EGY,primary,1,2,1,2,month,year,True,True,0.44,gold_same,False,,grammar_fit,0
+EGY-018,clinical_knowledge::22,clinical_knowledge,EGY,primary,2,1,1,3,One in six over 65s is providing some form of informal care.,The majority of informal carers are fit and active.,False,False,0.2941,gold_differs,False,,,1
+EGY-019,international_law::4,international_law,EGY,primary,2,1,0,3,The war crimes trials at Nuremberg and Tokyo took place immediately after the First World War,"The war crimes trials found that ""superior orders"" could not be used as a defence for war crimes or crimes against humanity",False,False,0.25,gold_differs,False,,,1
+EGY-020,world_religions::27,world_religions,EGY,primary,1,2,1,0,The Crescent,The Hijab,True,True,0.2857,gold_same,False,,,0
+EGY-021,high_school_world_history::70,high_school_world_history,EGY,primary,2,1,1,0,Collective defense,Capitalism,True,True,0.9278,gold_same,False,,,0
+EGY-022,high_school_us_history::84,high_school_us_history,EGY,primary,1,2,0,2,Washington's Farewell Address,Lincoln's Gettysburg Address,True,True,0.824,gold_same,False,,,2
+EGY-023,moral_scenarios::41,moral_scenarios,EGY,diagnostic,1,2,3,1,"Not wrong, Not wrong","Wrong, Not wrong",False,False,0.3462,,,gold_reject,gold_reject,3
+EGY-024,virology::6,virology,EGY,primary,1,2,0,3,Aplastic crisis in anaemia patients,Serious pneumonia,False,True,0.2105,gold_differs,False,,,0
+EGY-025,us_foreign_policy::55,us_foreign_policy,EGY,primary,2,1,3,0,the International Monetary Fund.,the World Bank.,True,True,0.4286,gold_same,False,,grammar_fit,1
+EGY-026,philosophy::92,philosophy,EGY,primary,1,2,3,0,act on one’s conscience.,act as one pleases.,False,False,0.4615,gold_differs,False,,,0
+EGY-027,elementary_mathematics::9,elementary_mathematics,EGY,primary,2,1,1,3,10,20,True,True,0.6,gold_same,False,,,0
+EGY-028,astronomy::41,astronomy,EGY,primary,2,1,2,1,Waxing gibbous Full Waning gibbous,Waning crescent New Waxing crescent,False,False,0.303,gold_differs,False,,,0
+EGY-029,business_ethics::96,business_ethics,EGY,primary,1,2,0,2,"Globalisation, Cultural, Legal, Accountability","Privatisation, Cultural, Legal, Accountability",False,False,0.2424,gold_differs,False,,,2
+EGY-030,clinical_knowledge::19,clinical_knowledge,EGY,diagnostic,1,2,1,3,Impacted faeces can sometimes be mistaken for a rectal tumour,Peri-anal warts can only be demonstrated on proctoscopy,False,False,0.0,,,low_overlap,low_overlap,1
+SYR-001,conceptual_physics::79,conceptual_physics,SYR,diagnostic,1,2,2,0,Either of these,current,False,True,0.0,,,low_overlap,low_overlap;option_ref,0
+SYR-002,public_relations::33,public_relations,SYR,primary,2,1,2,1,1991,1989,True,True,0.25,gold_same,False,,,0
+SYR-003,nutrition::17,nutrition,SYR,primary,1,2,0,2,"Acetaldehyde, acetate,","Acetyl-CoA, lipids,",True,True,0.5714,gold_same,False,,,0
+SYR-004,high_school_psychology::61,high_school_psychology,SYR,primary,1,2,1,0,The rats raised in Group I will have forebrains that weigh less than those of the rats raised in Group II.,The rats raised in Group I will have forebrains that weigh more than those of the rats raised in Group II.,False,False,0.1667,gold_differs,False,,,0
+SYR-005,business_ethics::62,business_ethics,SYR,primary,1,2,3,0,"Normative, Descriptive and Instrumental","Normative, Descriptive and Economic",True,True,0.35,gold_same,False,,,0
+SYR-006,college_medicine::60,college_medicine,SYR,primary,1,2,1,3,Steroid,Amino acid,True,True,0.2235,gold_same,False,,,0
+SYR-007,college_computer_science::15,college_computer_science,SYR,primary,1,2,2,3,"Range search: Given values a and b, find all the records whose key value is in the range a, b.","Symbol table lookup: Given a program identifier, find its type and address.",False,False,0.3043,gold_differs,False,,gold_reject,3
+SYR-008,nutrition::57,nutrition,SYR,diagnostic,1,2,3,1,all of the options given are correct,both inadequate and excessive weight gain are associated with poorer maternal and infant health outcomes,False,False,0.2273,,,option_ref,option_ref,1
+SYR-009,abstract_algebra::12,abstract_algebra,SYR,primary,1,2,3,2,"False, True","True, False",False,False,0.2083,gold_differs,False,,,0
+SYR-010,anatomy::65,anatomy,SYR,primary,1,2,2,3,In the upper wall of the right atrium,In the upper wall of the left ventricle,False,False,0.4286,gold_differs,False,,,0
+SYR-011,elementary_mathematics::58,elementary_mathematics,SYR,primary,1,2,3,1,675 feet,575 feet,False,False,0.5357,gold_differs,False,,,0
+SYR-012,astronomy::26,astronomy,SYR,diagnostic,1,2,3,2,it switches polarity every 11 years,it causes spectacular auroral displays at Jupiter's north and south poles,False,False,0.2,,,gold_reject,gold_reject,3
+SYR-013,astronomy::90,astronomy,SYR,primary,1,2,0,1,Distance at which one astronomical unit measures one arcsecond from Earth.,Orbital distance of the solar system around the center of the Milky Way in one year.,False,False,0.2812,gold_differs,False,,,0
+SYR-014,professional_law::85,professional_law,SYR,primary,2,1,3,2,Hearsay,Photographs,True,True,0.4286,gold_same,False,,gold_reject,3
+SYR-015,us_foreign_policy::55,us_foreign_policy,SYR,primary,2,1,3,0,the International Monetary Fund.,the World Bank.,True,True,0.4091,gold_same,False,,grammar_fit,1
+SYR-016,high_school_us_history::81,high_school_us_history,SYR,primary,1,2,3,1,President Lincoln had continually changing views on slavery and abolition that did not always fit into the prevailing political categories.,President Lincoln was reluctant to be ideologically associated with advocates like Frederick Douglass.,False,False,0.8189,gold_differs,False,,,2
+SYR-017,sociology::62,sociology,SYR,primary,1,2,1,3,Modernization theory,Dependency theory,True,True,0.1429,gold_same,False,,,0
+SYR-018,security_studies::82,security_studies,SYR,primary,1,2,0,3,Business networks,Computer networks,True,False,0.2381,gold_same,False,,,1
+SYR-019,high_school_geography::25,high_school_geography,SYR,diagnostic,1,2,2,3,supranationalism.,complementarity.,True,True,0.0769,,,grammar_fit,grammar_fit,0
+SYR-020,conceptual_physics::36,conceptual_physics,SYR,primary,2,1,2,1,Both of these,energy,False,True,0.2,gold_differs,False,,option_ref,0
+SYR-021,professional_psychology::33,professional_psychology,SYR,primary,1,2,0,2,job satisfaction,intelligence,True,True,0.3333,gold_same,False,,grammar_fit,0
+SYR-022,virology::94,virology,SYR,primary,2,1,0,3,Such viruses are confined to animals,They cause pandemics,False,False,0.3077,gold_differs,False,,,0
+SYR-023,human_aging::31,human_aging,SYR,diagnostic,2,1,2,3,Confused and disoriented,Sleepy and lazy,False,False,0.05,,,low_overlap,gold_reject;low_overlap,6
+SYR-024,world_religions::47,world_religions,SYR,diagnostic,1,2,0,3,Divine power,Philosophical intellect,False,True,0.2,,,gold_reject,gold_reject,4
+SYR-025,high_school_chemistry::15,high_school_chemistry,SYR,primary,2,1,1,3,Increasing the pressure,None of the above,False,False,0.4074,gold_differs,False,,option_ref,2
+SYR-026,human_aging::13,human_aging,SYR,primary,1,2,0,2,Anger and guilt,Deceit and cunning,False,False,0.1538,gold_differs,False,,gold_reject,4
+SYR-027,global_facts::18,global_facts,SYR,primary,1,2,3,1,0.68,0.38,True,True,0.0588,gold_same,False,,low_overlap,2
+SYR-028,international_law::9,international_law,SYR,primary,1,2,3,1,Jeremy Bentham,Emmanuel Kant,True,True,0.3333,gold_same,False,,,0
+SYR-029,marketing::2,marketing,SYR,primary,1,2,1,0,Transfer pricing.,Price gouging.,False,False,0.1818,gold_differs,False,,,0
+SYR-030,high_school_macroeconomics::21,high_school_macroeconomics,SYR,primary,2,1,3,1,The balanced budget multiplier,The spending (or expenditure) multiplier,True,True,0.0909,gold_same,False,,,1
+MAG-001,security_studies::44,security_studies,MAG,diagnostic,1,2,3,2,International trends such as globalization may have had the unintentional consequence of opening up new spaces for the development of transnational crime.,"Transnational criminal activities have always been a feature of the international system. In the policy community, the growth of interest in TNC is due to the increasing sophistication of intelligence and communications technology, which has enabled the true representation of the scale and the scope of the problem to be known.",False,False,0.0833,,,low_overlap,low_overlap,0
+MAG-002,sociology::10,sociology,MAG,diagnostic,2,1,3,0,"they involved short, simple sentences with a small vocabulary",this pattern of speech made them the target of bullying,True,False,0.5294,,,grammar_fit,grammar_fit,2
+MAG-003,astronomy::75,astronomy,MAG,diagnostic,2,1,3,2,A and B,A source of organic molecules,True,True,0.0435,,,low_overlap,low_overlap;option_ref,0
+MAG-004,high_school_us_history::10,high_school_us_history,MAG,primary,2,1,2,3,the passage of an act creating higher tariff rates.,"the funding of ""internal improvements.""",True,True,0.9007,gold_same,False,,grammar_fit,0
+MAG-005,moral_scenarios::15,moral_scenarios,MAG,primary,2,1,0,2,"Wrong, Wrong","Not wrong, Wrong",True,False,0.2043,gold_same,False,,,1
+MAG-006,astronomy::18,astronomy,MAG,primary,2,1,2,0,1.38 × 10−23 m^2 · kg · s^−2 · K^−1,1.38 × 10−21 m^3 · kg · s^−2 · K^−1,True,True,0.7778,gold_same,False,,,0
+MAG-007,elementary_mathematics::81,elementary_mathematics,MAG,primary,1,2,2,3,8,16,True,True,0.6667,gold_same,False,,,0
+MAG-008,public_relations::11,public_relations,MAG,primary,2,1,2,3,Idea-oriented,Message-oriented,True,True,0.6875,gold_same,False,,,0
+MAG-009,high_school_geography::37,high_school_geography,MAG,primary,1,2,3,2,Health care,Daycare facilities,True,False,0.2143,gold_same,False,,,1
+MAG-010,nutrition::19,nutrition,MAG,primary,2,1,1,3,40 to 60%,10 to 30%,True,True,0.3846,gold_same,False,,,1
+MAG-011,professional_psychology::41,professional_psychology,MAG,primary,2,1,1,3,discuss the possibility that the patient consult with another therapist,increase the frequency of sessions,False,False,0.3333,gold_differs,False,,,2
+MAG-012,security_studies::5,security_studies,MAG,diagnostic,2,1,3,0,All of the above,Both HM and realism are based on the notion that there exist within society certain discernable realities.,False,False,0.8571,,,option_ref,option_ref,0
+MAG-013,virology::90,virology,MAG,primary,2,1,0,2,Chemotherapy,Hygiene and social distancing,True,False,0.2222,gold_same,False,,,0
+MAG-014,virology::10,virology,MAG,diagnostic,1,2,1,3,Exclusively breast fed for six months,months,False,True,0.1111,,,gold_reject,gold_reject,4
+MAG-015,conceptual_physics::22,conceptual_physics,MAG,primary,1,2,1,2,circular,elliptical,False,False,0.5333,gold_differs,False,,,2
+MAG-016,high_school_psychology::92,high_school_psychology,MAG,primary,2,1,1,0,a compulsion,a delusion,False,False,0.1081,gold_differs,False,,,1
+MAG-017,business_ethics::61,business_ethics,MAG,primary,1,2,0,2,"Social consensus, Temporal immediacy, Proximity","Proximity, Temporal immediacy, Social dissensus",True,True,0.3571,gold_same,False,,,0
+MAG-018,moral_scenarios::22,moral_scenarios,MAG,diagnostic,2,1,1,3,"Wrong, Not wrong","Not wrong, Not wrong",False,False,0.2421,,,gold_reject,gold_reject,4
+MAG-019,marketing::65,marketing,MAG,primary,1,2,1,2,Channel conflict.,Channel relationships.,True,True,0.0811,gold_same,False,,low_overlap,1
+MAG-020,college_medicine::2,college_medicine,MAG,primary,1,2,3,0,A high diver takes instruction from her coach to improve her form on a specific move.,A baseball player hits baseballs from a tee in order to build muscle memory.,False,False,0.2462,gold_differs,False,,,0
+MAG-021,international_law::51,international_law,MAG,primary,2,1,3,1,Handyside v UK (1976),Airey v Ireland (1979),False,False,0.3913,gold_differs,False,,,0
+MAG-022,prehistory::56,prehistory,MAG,primary,1,2,2,0,Wari,Moche,True,True,0.3077,gold_same,False,,,2
+MAG-023,anatomy::52,anatomy,MAG,primary,2,1,2,1,skilled motor movements decussate in the pyramids.,skilled movements decussate in the medial lemniscus,False,False,1.0,gold_differs,False,,,1
+MAG-024,global_facts::80,global_facts,MAG,primary,1,2,3,2,Anxiety disorders,Alcohol use disorders,True,False,0.8182,gold_same,False,,,0
+MAG-025,us_foreign_policy::1,us_foreign_policy,MAG,primary,2,1,3,1,All of the above,"Domestic environment, government and bureaucracy",False,True,0.2917,gold_differs,False,,option_ref,2
+MAG-026,human_aging::7,human_aging,MAG,primary,2,1,3,0,Smaller outer circles,Larger inner circles,False,False,0.28,gold_differs,False,,gold_reject,3
+MAG-027,high_school_macroeconomics::13,high_school_macroeconomics,MAG,primary,1,2,1,2,lower the price level and output in the economy.,raise the price level in the economy.,False,False,0.3158,gold_differs,False,,,1
+MAG-028,world_religions::60,world_religions,MAG,primary,2,1,0,3,Anointed one,The line of David,False,False,0.3333,gold_differs,False,,,0
+MAG-029,philosophy::17,philosophy,MAG,primary,1,2,3,0,the only way to be a good or worthwhile person is to know how human beings should behave based on universal norms or values.,the unexamined life is one in which we live day to day without asking questions about who we are and why we are here in the first place.,False,False,0.303,gold_differs,False,,,1
+MAG-030,clinical_knowledge::12,clinical_knowledge,MAG,primary,1,2,3,0,tightly bound to enzymes and are required for their activity.,required by all enzymes in the cell.,False,False,1.0,gold_differs,False,,,0

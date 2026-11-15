@@ -1,0 +1,569 @@
+{
+ "description": "Exploratory: pair_en mean dialect gap vs MSA (5 dialects, order-matched, per key), MMMLU-AR-matched vs unmatched keys. Matched = MSA question string equals an openai/MMMLU test/mmlu_AR-XY.csv question after whitespace normalisation (re \\s+ -> ' ', strip). Key-level domain-stratified bootstrap (B=2000, seed 2026) over all 1,024 keys, subset by masking (same procedure as metrics.json strata). Primary scoring (invalid = wrong).",
+ "mmmlu_source": {
+  "repo": "openai/MMMLU",
+  "file": "test/mmlu_AR-XY.csv",
+  "revision": "325a01dc3e173cac1578df94120499aaca2e2504",
+  "n_rows": 14042
+ },
+ "n_keys": 1024,
+ "n_matched": 844,
+ "n_unmatched": 180,
+ "n_matched_question_and_4_options": 765,
+ "unmatched_by_domain": {
+  "abstract_algebra": 13,
+  "business_ethics": 13,
+  "college_computer_science": 13,
+  "management": 13,
+  "public_relations": 13,
+  "college_medicine": 8,
+  "us_foreign_policy": 8,
+  "virology": 8,
+  "conceptual_physics": 7,
+  "human_aging": 7,
+  "international_law": 7,
+  "anatomy": 6,
+  "astronomy": 6,
+  "clinical_knowledge": 6,
+  "nutrition": 6,
+  "elementary_mathematics": 5,
+  "high_school_chemistry": 5,
+  "security_studies": 5,
+  "high_school_macroeconomics": 4,
+  "high_school_psychology": 4,
+  "marketing": 4,
+  "sociology": 4,
+  "high_school_geography": 3,
+  "high_school_world_history": 3,
+  "professional_psychology": 3,
+  "global_facts": 2,
+  "prehistory": 2,
+  "high_school_us_history": 1,
+  "philosophy": 1
+ },
+ "judges_excluded_pending": [],
+ "judges": {
+  "gpt-6.1-sol": {
+   "all": {
+    "gap": -0.008300781249999998,
+    "gap_ci95": [
+     -0.015039062499999981,
+     -0.0013671874999998668
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.92529296875,
+    "msa_acc_paired": 0.93359375,
+    "msa_acc": {
+     "est": 0.93359375,
+     "ci95": [
+      0.9194213867187501,
+      0.947265625
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.00900473933649289,
+    "gap_ci95": [
+     -0.016609157190496937,
+     -0.0014455237216810454
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.9216824644549763,
+    "msa_acc_paired": 0.9306872037914692,
+    "msa_acc": {
+     "est": 0.9306872037914692,
+     "ci95": [
+      0.9140155401041073,
+      0.9460904908193092
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.0049999999999999975,
+    "gap_ci95": [
+     -0.02173969362469023,
+     0.012637693631669599
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.9422222222222221,
+    "msa_acc_paired": 0.9472222222222222,
+    "msa_acc": {
+     "est": 0.9472222222222222,
+     "ci95": [
+      0.9162296352628039,
+      0.9747226319753939
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": -0.004004739336492893,
+    "ci95": [
+     -0.023584942347293098,
+     0.013934679858614607
+    ]
+   }
+  },
+  "gpt-6-luna": {
+   "all": {
+    "gap": -0.031347656249999994,
+    "gap_ci95": [
+     -0.043359374999999756,
+     -0.019724121093749623
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.8197265625000001,
+    "msa_acc_paired": 0.85107421875,
+    "msa_acc": {
+     "est": 0.85107421875,
+     "ci95": [
+      0.8330078125,
+      0.86865234375
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.026777251184834115,
+    "gap_ci95": [
+     -0.039929349189829565,
+     -0.014234492596114508
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.8221563981042656,
+    "msa_acc_paired": 0.8489336492890995,
+    "msa_acc": {
+     "est": 0.8489336492890995,
+     "ci95": [
+      0.8281393771862217,
+      0.8684547649679588
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.05277777777777778,
+    "gap_ci95": [
+     -0.08066514452027314,
+     -0.023368227641360678
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.8083333333333333,
+    "msa_acc_paired": 0.8611111111111112,
+    "msa_acc": {
+     "est": 0.8611111111111112,
+     "ci95": [
+      0.8172010228166798,
+      0.9041948510386634
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.026000526592943645,
+    "ci95": [
+     -0.007176760335917322,
+     0.05590939261467727
+    ]
+   }
+  },
+  "opus-5.5": {
+   "all": {
+    "gap": -0.01904296875,
+    "gap_ci95": [
+     -0.026174316406249953,
+     -0.012304687499999911
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.92578125,
+    "msa_acc_paired": 0.94482421875,
+    "msa_acc": {
+     "est": 0.94482421875,
+     "ci95": [
+      0.9326171875,
+      0.9560668945312499
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.01907582938388626,
+    "gap_ci95": [
+     -0.027305911145906074,
+     -0.011569800399797103
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.9222748815165877,
+    "msa_acc_paired": 0.941350710900474,
+    "msa_acc": {
+     "est": 0.941350710900474,
+     "ci95": [
+      0.9262777590056374,
+      0.954764384920635
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.018888888888888886,
+    "gap_ci95": [
+     -0.03452435064935064,
+     -0.0046770104451882115
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.9422222222222222,
+    "msa_acc_paired": 0.9611111111111111,
+    "msa_acc": {
+     "est": 0.9611111111111111,
+     "ci95": [
+      0.9351351351351351,
+      0.9842976651165816
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": -0.00018694049499736604,
+    "ci95": [
+     -0.016633682734259168,
+     0.017067750506072867
+    ]
+   }
+  },
+  "haiku-5.5": {
+   "all": {
+    "gap": -0.04599609375,
+    "gap_ci95": [
+     -0.05830078124999993,
+     -0.03427246093749972
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.77724609375,
+    "msa_acc_paired": 0.8232421875,
+    "msa_acc": {
+     "est": 0.8232421875,
+     "ci95": [
+      0.8037109375,
+      0.8427856445312499
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.03578199052132701,
+    "gap_ci95": [
+     -0.04911775956515126,
+     -0.02286997675898469
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.7829383886255925,
+    "msa_acc_paired": 0.8187203791469194,
+    "msa_acc": {
+     "est": 0.8187203791469194,
+     "ci95": [
+      0.7976733865419018,
+      0.840242038507163
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.09388888888888888,
+    "gap_ci95": [
+     -0.12903396484041646,
+     -0.057652911164465866
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.7505555555555555,
+    "msa_acc_paired": 0.8444444444444444,
+    "msa_acc": {
+     "est": 0.8444444444444444,
+     "ci95": [
+      0.7956959543753341,
+      0.8882707548395479
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.058106898367561874,
+    "ci95": [
+     0.019148954107505077,
+     0.09566583475536354
+    ]
+   }
+  },
+  "gemini-4-argon": {
+   "all": {
+    "gap": -0.011230468749999998,
+    "gap_ci95": [
+     -0.01796874999999987,
+     -0.004589843750000042
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.92431640625,
+    "msa_acc_paired": 0.935546875,
+    "msa_acc": {
+     "est": 0.935546875,
+     "ci95": [
+      0.921875,
+      0.9482421875
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.008056872037914692,
+    "gap_ci95": [
+     -0.015037102032231705,
+     -0.0012985867074101853
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.925,
+    "msa_acc_paired": 0.9330568720379147,
+    "msa_acc": {
+     "est": 0.9330568720379147,
+     "ci95": [
+      0.917458292251154,
+      0.9474313022700119
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.026111111111111106,
+    "gap_ci95": [
+     -0.043915726213414066,
+     -0.009998618784530405
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.921111111111111,
+    "msa_acc_paired": 0.9472222222222222,
+    "msa_acc": {
+     "est": 0.9472222222222222,
+     "ci95": [
+      0.9185377992183683,
+      0.9739921765995615
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.018054239073196414,
+    "ci95": [
+     0.0008494727031037254,
+     0.036911563773864245
+    ]
+   }
+  },
+  "gemini-3.8-flash": {
+   "all": {
+    "gap": -0.014941406249999999,
+    "gap_ci95": [
+     -0.02080322265624995,
+     -0.009179687500000085
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.925,
+    "msa_acc_paired": 0.93994140625,
+    "msa_acc": {
+     "est": 0.93994140625,
+     "ci95": [
+      0.9267578125,
+      0.9521484375
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.013625592417061606,
+    "gap_ci95": [
+     -0.019977085781433604,
+     -0.0073939332717617625
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.9247630331753555,
+    "msa_acc_paired": 0.9383886255924171,
+    "msa_acc": {
+     "est": 0.9383886255924171,
+     "ci95": [
+      0.9227166276346604,
+      0.9516331093237379
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.021111111111111112,
+    "gap_ci95": [
+     -0.03716035926055122,
+     -0.005615719044661539
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.926111111111111,
+    "msa_acc_paired": 0.9472222222222222,
+    "msa_acc": {
+     "est": 0.9472222222222222,
+     "ci95": [
+      0.9147727272727273,
+      0.9760514684915883
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.0074855186940495,
+    "ci95": [
+     -0.009663314469873922,
+     0.024628796506549745
+    ]
+   }
+  },
+  "deepseek-v4-pro": {
+   "all": {
+    "gap": -0.055859374999999996,
+    "gap_ci95": [
+     -0.06679931640624986,
+     -0.04511718749999993
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.8127929687500001,
+    "msa_acc_paired": 0.86865234375,
+    "msa_acc": {
+     "est": 0.86865234375,
+     "ci95": [
+      0.8515625,
+      0.8857421875
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.04988151658767772,
+    "gap_ci95": [
+     -0.0622037914691943,
+     -0.038089189304387316
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.8156398104265402,
+    "msa_acc_paired": 0.865521327014218,
+    "msa_acc": {
+     "est": 0.865521327014218,
+     "ci95": [
+      0.8459714926913843,
+      0.8842559072954568
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.08388888888888887,
+    "gap_ci95": [
+     -0.1133360215053764,
+     -0.05568678151717958
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.7994444444444445,
+    "msa_acc_paired": 0.8833333333333333,
+    "msa_acc": {
+     "est": 0.8833333333333333,
+     "ci95": [
+      0.8404178005937655,
+      0.9221621412347718
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.034007372301211154,
+    "ci95": [
+     0.00242613983248371,
+     0.06474106542968242
+    ]
+   }
+  },
+  "deepseek-flash": {
+   "all": {
+    "gap": -0.05410156249999999,
+    "gap_ci95": [
+     -0.06679931640624998,
+     -0.0420898437499998
+    ],
+    "n_keys": 1024,
+    "dialect_acc": 0.80185546875,
+    "msa_acc_paired": 0.85595703125,
+    "msa_acc": {
+     "est": 0.85595703125,
+     "ci95": [
+      0.83740234375,
+      0.8745239257812499
+     ],
+     "n_keys": 1024
+    }
+   },
+   "matched": {
+    "gap": -0.05201421800947868,
+    "gap_ci95": [
+     -0.06548941826829811,
+     -0.03940324941451984
+    ],
+    "n_keys": 844,
+    "dialect_acc": 0.8081753554502371,
+    "msa_acc_paired": 0.8601895734597157,
+    "msa_acc": {
+     "est": 0.8601895734597157,
+     "ci95": [
+      0.8395399816176471,
+      0.8797246306565865
+     ],
+     "n_keys": 844
+    }
+   },
+   "unmatched": {
+    "gap": -0.06388888888888888,
+    "gap_ci95": [
+     -0.09663980263157883,
+     -0.031057479734709
+    ],
+    "n_keys": 180,
+    "dialect_acc": 0.7722222222222223,
+    "msa_acc_paired": 0.8361111111111111,
+    "msa_acc": {
+     "est": 0.8361111111111111,
+     "ci95": [
+      0.786515390917603,
+      0.8787918660287081
+     ],
+     "n_keys": 180
+    }
+   },
+   "matched_minus_unmatched": {
+    "est": 0.011874670879410215,
+    "ci95": [
+     -0.023584656710227622,
+     0.047040876760276115
+    ]
+   }
+  }
+ },
+ "rev5_option_identity": {
+  "all_4_options_identical_to_msa": {
+   "UAE": 378,
+   "KSA": 440,
+   "EGY": 343,
+   "SYR": 247,
+   "MAG": 245
+  },
+  "gold_and_distractor_identical_to_msa": {
+   "UAE": 444,
+   "KSA": 515,
+   "EGY": 399,
+   "SYR": 318,
+   "MAG": 306
+  },
+  "note": "comparison after .strip() of each option string, out of 1,024 keys"
+ },
+ "rev5_tokenisation": "features.py q_word_jacc: Jaccard over sets of word types, tokens = re.findall(r'\\w+', text, re.UNICODE) (Python Unicode \\w: letters/digits/underscore; punctuation dropped; no normalisation of alef/hamza/ta-marbuta/diacritics, no case-folding, no stemming); empty union -> 1.0. q_char_sim = difflib SequenceMatcher(autojunk=False).ratio() on raw question strings. Option identity: exact string equality after .strip()."
+}
